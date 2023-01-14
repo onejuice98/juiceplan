@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/juiceplan/static/css/main.b6fc2c56.css",
+    "main.js": "/juiceplan/static/js/main.a8fab8bd.js",
+    "index.html": "/juiceplan/index.html",
+    "main.b6fc2c56.css.map": "/juiceplan/static/css/main.b6fc2c56.css.map",
+    "main.a8fab8bd.js.map": "/juiceplan/static/js/main.a8fab8bd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6fc2c56.css",
+    "static/js/main.a8fab8bd.js"
+  ]
+}
