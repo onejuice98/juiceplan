@@ -8,11 +8,7 @@ const DDays = () => {
     const gapNum = dDay - toDay;
     setDays(Math.ceil(gapNum / (1000 * 60 * 60 * 24)));
   }, []);
-  return (
-    <div className="flex justify-center items-center w-80 h-20 border-2 rounded-lg text-4xl shadow-md font-bold text-gray-600">
-      전역까지 D-{days}
-    </div>
-  );
+  return <div className="font-mono font-bold text-sm">전역까지 D-{days}</div>;
 };
 
 export default DDays;
