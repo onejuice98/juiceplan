@@ -11,7 +11,7 @@ function App() {
     <Layout>
       <Profile />
 
-      <hr className="mx-4ㅣ my-4 border-gray-300 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <hr className="m-4 border-gray-300 sm:mx-auto dark:border-gray-700" />
       <div className="flex flex-col items-center gap-4 mt-4">
         <Today />
         <DDays />

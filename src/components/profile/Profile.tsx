@@ -8,8 +8,8 @@ const Profile = () => {
 
       <div className="font-mono font-bold"> @1_ju1.ce</div>
       <div className="flex justify-center items-center gap-2">
-        <Box>Velog </Box>
-        <Box>Github</Box>
+        <Box href="https://velog.io/@onejuice98">Velog </Box>
+        <Box href="https://github.com/onejuice98">Github</Box>
       </div>
     </div>
   );
