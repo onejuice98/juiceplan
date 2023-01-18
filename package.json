@@ -11,12 +11,16 @@
     "@types/node": "^16.18.11",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
+    "assert": "^2.0.0",
     "axios": "^1.2.2",
+    "buffer": "^6.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-xml-parser": "^1.1.8",
     "typescript": "^4.9.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xml-js": "^1.6.11"
   },
   "scripts": {
     "start": "react-scripts start",
