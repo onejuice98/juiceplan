@@ -26,12 +26,13 @@ interface DDAYS {
 }
 const DDays = ({ dDayName, date }: DDAYS) => {
   const [days, setDays] = useState(0);
-  const dDay: any = new Date(`${date} 00:00:00`);
   const toDay: any = new Date();
   useEffect(() => {
+    const dDay: any = new Date(`${date} 00:00:00`);
+    const toDay: any = new Date();
     const gapNum = dDay - toDay;
     setDays(Math.ceil(gapNum / (1000 * 60 * 60 * 24)));
-  }, []);
+  }, [date]);
 
   let toDayMonth = toDay.getMonth();
   let toDayYear = toDay.getFullYear();
@@ -52,21 +53,9 @@ const DDays = ({ dDayName, date }: DDAYS) => {
       +lastWeek.slice(0, lastWeeksDays).includes(6));
 
   let diffDateList = [];
-  for (let i = 0; i < getMonthDiff(toDay, dDay) + 1; i++) {
-    if (toDayMonth + 1 === 13) {
-      toDayYear += 1;
-      toDayMonth = 0;
-    }
-    diffDateList.push([
-      toDayYear.toString(),
-      toDayMonth + 1 < 10
-        ? "0" + (toDayMonth + 1).toString()
-        : (toDayMonth + 1).toString(),
-    ]);
-    toDayMonth += 1;
-    //console.log(Holiday(diffDateList[i][0][0], diffDateList[i][0][1]));
-  }
+
   const holidays = Holiday("2023", "01");
+
   return (
     <div className="font-mono font-bold text-sm group relative cursor-pointer pt-4">
       {dDayName} D-{days}

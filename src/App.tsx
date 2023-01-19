@@ -6,29 +6,52 @@ import Today from "./components/dDay/Today";
 
 import Layout from "./components/layout/Layout";
 import Profile from "./components/profile/Profile";
-import { dDayUserInputState, UserInput } from "./reocil/dDay";
+import {
+  dDayListState,
+  dDayUserInputState,
+  isSubmitState,
+  UserInput,
+} from "./reocil/dDay";
 
 function App() {
   const dDayUserInput = useRecoilValue<UserInput>(dDayUserInputState);
+  const dDayList = useRecoilValue<UserInput[]>(dDayListState);
+  const isSubmit = useRecoilValue<boolean>(isSubmitState);
   const [open, setOpen] = useState(false);
   const handleModal = () => setOpen((prev) => !prev);
 
   const modalRef = useRef<HTMLDivElement>(null);
   // recoil 이용해서 얻어낸 엄청난 업적!!!!!!!!!!!!!
   // recoil setDday.tsx 에서 얻은 데이터를 어떻게 띄울까 생각했는데 modal 창이 여닫힐때마다 마운트 되게해서 해결!!!
-  useEffect(() => {
-    console.log("mount!");
-  }, [handleModal]);
-  console.log(dDayUserInput);
+  useEffect(() => {}, [dDayUserInput.date]);
+  console.log(dDayList);
   return (
     <div>
       <Layout>
         <Profile />
         {open && (
           <div className="z-10 absolute top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75] flex justify-center items-center">
-            <div className="relative w-[80%] h-[80%] z-10 bg-white flex justify-center items-center opacity-1 rounded">
+            <div className="relative w-[80%] h-[80%] z-10 bg-white opacity-1 rounded-lg flex flex-col justify-between">
               <SetDday />
-              <button onClick={handleModal}> 나가기 </button>
+              <div className="flex flex-col h-full m-2 justify-start gap-2">
+                {isSubmit &&
+                  dDayList.map((value, idx) => (
+                    <div
+                      key={idx + 1}
+                      className="w-full h-12 bg-orange-200 rounded-md p-1 shadow-md"
+                    >
+                      {value.dDayName} {value.date}
+                    </div>
+                  ))}
+              </div>
+              <div className="flex justify-end items-end bg-gray-100 rounded-lg">
+                <button
+                  className="w-20 h-10 bg-red-500 text-white rounded-md shadow-lg m-4 font-mono font-medium hover:bg-red-700"
+                  onClick={handleModal}
+                >
+                  나가기
+                </button>
+              </div>
             </div>
           </div>
         )}

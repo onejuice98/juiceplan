@@ -5,6 +5,10 @@ export interface UserInput {
   date: string;
 }
 
+export const isSubmitState = atom<boolean>({
+  key: "isSubmitState",
+  default: false,
+});
 export const dDayUserInputState = atom<UserInput>({
   key: "dDayUserInputState",
   default: { dDayName: "입력하세요! D-Day!", date: "2023-06-30" },
@@ -12,5 +16,5 @@ export const dDayUserInputState = atom<UserInput>({
 
 export const dDayListState = atom<UserInput[]>({
   key: "dDayListState",
-  default: [{ dDayName: "", date: "" }],
+  default: [],
 });
