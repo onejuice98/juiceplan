@@ -20,9 +20,13 @@ const getYearDiff = (d1: Date, d2: Date) => {
 
   return Math.floor(Math.abs(diffDate / (1000 * 60 * 60 * 24 * 365)));
 };
-const DDays = () => {
+interface DDAYS {
+  dDayName: string;
+  date: string;
+}
+const DDays = ({ dDayName, date }: DDAYS) => {
   const [days, setDays] = useState(0);
-  const dDay: any = new Date("2023-06-30 00:00:00");
+  const dDay: any = new Date(`${date} 00:00:00`);
   const toDay: any = new Date();
   useEffect(() => {
     const gapNum = dDay - toDay;
@@ -63,10 +67,9 @@ const DDays = () => {
     //console.log(Holiday(diffDateList[i][0][0], diffDateList[i][0][1]));
   }
   const holidays = Holiday("2023", "01");
-  console.log(holidays);
   return (
     <div className="font-mono font-bold text-sm group relative cursor-pointer pt-4">
-      전역까지 D-{days}
+      {dDayName} D-{days}
       <div className="font-mono text-sm pointer-events-none absolute translate-x-3/4 -translate-y-3/4 bg-emerald-300  whitespace-nowrap rounded-md px-2 py-1 opacity-0 transition duration-500 before:absolute before:-left-1 before:bottom-1/2  before:-translate-x-1/2 before:border-4 before:border-transparent before:border-r-emerald-300 before:content-[''] group-hover:opacity-100">
         주말 : {weekend} 평일 : {days - weekend}
       </div>

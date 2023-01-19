@@ -1,16 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
 import DDays from "./components/dDay/Ddays";
+import SetDday from "./components/dDay/SetDday";
 import Today from "./components/dDay/Today";
 
 import Layout from "./components/layout/Layout";
 import Profile from "./components/profile/Profile";
+import { dDayUserInputState, UserInput } from "./reocil/dDay";
 
 function App() {
+  const dDayUserInput = useRecoilValue<UserInput>(dDayUserInputState);
   const [open, setOpen] = useState(false);
   const handleModal = () => setOpen((prev) => !prev);
 
   const modalRef = useRef<HTMLDivElement>(null);
-
+  // recoil 이용해서 얻어낸 엄청난 업적!!!!!!!!!!!!!
+  // recoil setDday.tsx 에서 얻은 데이터를 어떻게 띄울까 생각했는데 modal 창이 여닫힐때마다 마운트 되게해서 해결!!!
+  useEffect(() => {
+    console.log("mount!");
+  }, [handleModal]);
+  console.log(dDayUserInput);
   return (
     <div>
       <Layout>
@@ -18,7 +27,7 @@ function App() {
         {open && (
           <div className="z-10 absolute top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75] flex justify-center items-center">
             <div className="relative w-[80%] h-[80%] z-10 bg-white flex justify-center items-center opacity-1 rounded">
-              modal test
+              <SetDday />
               <button onClick={handleModal}> 나가기 </button>
             </div>
           </div>
@@ -28,7 +37,10 @@ function App() {
         <div className="m-4 flex gap-2 justify-between items-center">
           <div>
             <Today />
-            <DDays />
+            <DDays
+              dDayName={dDayUserInput.dDayName}
+              date={dDayUserInput.date}
+            />
           </div>
 
           <button
