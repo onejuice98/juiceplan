@@ -1,67 +1,66 @@
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
-import {
-  dDayListState,
-  dDayUserInputState,
-  isSubmitState,
-} from "../../reocil/dDay";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { dDayListState, isSubmitState, UserInput } from "../../recoil/dDay";
+import DayInput from "./DayInput";
 
-type UserInput = { dDayName: string; date: string };
 const SetDday = () => {
-  const [isSubmit, setIsSubmit] = useRecoilState<boolean>(isSubmitState);
-  const [userInputs, setUserInputs] =
-    useRecoilState<UserInput>(dDayUserInputState);
-  const [list, setList] = useRecoilState<UserInput[]>(dDayListState);
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setUserInputs({
-      ...userInputs,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
-  };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (userInputs.dDayName === "" || userInputs.date === "") {
-      return;
-    } else {
-      setIsSubmit(true);
-      setList([...list, userInputs]);
-    }
-    event.currentTarget.reset();
-  };
-  const deleteItem = (event: React.FormEvent<HTMLInputElement>) => {
-    const key = event.currentTarget.value;
-    list.splice(parseInt(key), 1);
-    setList([...list]);
-  };
+  const [open, setOpen] = useState(false);
+  const dDayList = useRecoilValue<UserInput[]>(dDayListState);
+  const isSubmit = useRecoilValue<boolean>(isSubmitState);
+
+  const handleModal = () => setOpen((prev) => !prev);
   return (
-    <div className="mt-4">
-      <form
-        name="isSubmit"
-        onSubmit={handleSubmit}
-        className="flex justify-between px-4"
+    <div>
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-sticky"
+        aria-expanded="false"
+        onClick={handleModal}
       >
-        <input
-          name="dDayName"
-          type="text"
-          placeholder="D-day 이름"
-          onChange={handleChange}
-          className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse"
-        />
-        <input
-          name="date"
-          type="date"
-          onChange={handleChange}
-          className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse"
-        />
-        <button
-          type="submit"
-          className="w-[10%] bg-sky-500 text-white rounded-md font-mono text-sm shadow-md hover:bg-sky-700"
+        <svg
+          className="w-4 h-4"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          +
-        </button>
-      </form>
-      <hr className="mt-4 mx-2 border-gray-300 sm:mx-auto dark:border-gray-700" />
+          <path
+            fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+      {open && (
+        <div className="z-10 absolute top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75] flex justify-center items-center">
+          <div className="relative w-[80%] h-[80%] z-10 bg-white opacity-1 rounded-lg flex flex-col justify-between">
+            <DayInput />
+            <div className="flex flex-col h-full m-2 justify-start gap-2">
+              {isSubmit &&
+                dDayList.map((value, idx) => (
+                  <div
+                    key={idx + 1}
+                    className="w-full h-12 bg-orange-200 rounded-md p-1 shadow-md"
+                  >
+                    {value.dDayName} {value.date}
+                  </div>
+                ))}
+            </div>
+            <div className="flex justify-end items-end bg-gray-100 rounded-lg">
+              <button
+                className="w-20 h-10 bg-red-500 text-white rounded-md shadow-lg m-4 font-mono font-medium hover:bg-red-700"
+                onClick={handleModal}
+              >
+                나가기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
+
 export default SetDday;

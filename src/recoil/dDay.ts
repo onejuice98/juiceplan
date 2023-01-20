@@ -11,7 +11,7 @@ export const isSubmitState = atom<boolean>({
 });
 export const dDayUserInputState = atom<UserInput>({
   key: "dDayUserInputState",
-  default: { dDayName: "입력하세요! D-Day!", date: "2023-06-30" },
+  default: { dDayName: "누군가의 전역일", date: "2023-06-30" },
 });
 
 export const dDayListState = atom<UserInput[]>({
