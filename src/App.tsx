@@ -1,22 +1,27 @@
 import { useRecoilValue } from "recoil";
-import Layout from "components/layout/Layout";
-import Profile from "components/profile/Profile";
-import { dDayUserInputState, UserInput } from "./recoil/dDay";
-import Dday from "components/dDay/Dday";
-import SetDday from "components/dDay/SetDday";
-import Horizon from "components/common/Horizon";
-import Skeleton from "components/common/Skeleton";
+import Layout from "./components/layout/Layout";
+import Profile from "./components/profile/Profile";
+import { dDayListState, isErrorState, UserInput } from "./recoil/dDay";
+import Dday from "./components/dDay/Dday";
+import SetDday from "./components/dDay/SetDday";
+import Horizon from "./components/common/Horizon";
+import Skeleton from "./components/common/Skeleton";
+import Toast from "./components/dDay/Toast";
 
 function App() {
-  const dDayUserInput = useRecoilValue<UserInput>(dDayUserInputState);
+  const dDayUserInputList = useRecoilValue<UserInput[]>(dDayListState);
+  const isError = useRecoilValue<boolean>(isErrorState);
   return (
     <div>
+      {isError && <Toast />}
       <Layout>
         <Profile />
         <Horizon />
-        <div className="m-4 flex gap-2 justify-between items-center">
-          <Dday dDayName={dDayUserInput.dDayName} date={dDayUserInput.date} />
-
+        <div className="flex justify-between mx-4 items-center gap-2">
+          <Dday
+            dDayName={dDayUserInputList[0].dDayName}
+            date={dDayUserInputList[0].date}
+          />
           <SetDday />
         </div>
         <Horizon />

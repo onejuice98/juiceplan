@@ -9,6 +9,7 @@ interface IJuiceFont {
   isBold?: boolean;
   isSmall?: boolean;
   others?: string;
+  isTooltip?: boolean;
   children: React.ReactNode;
 }
 const JuiceFont = ({
@@ -22,7 +23,7 @@ const JuiceFont = ({
       <div
         className={`font-mono ${isBold && `font-bold`} ${
           isSmall && `text-sm`
-        } ${others}`}
+        } ${others} `}
       >
         {children}
       </div>
