@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   dDayListState,
@@ -7,7 +7,6 @@ import {
   UserInput,
 } from "../../recoil/dDay";
 import Horizon from "../common/Horizon";
-import Toast from "./Toast";
 
 const DayInput = () => {
   const setIsError = useSetRecoilState<boolean>(isErrorState);
@@ -34,12 +33,6 @@ const DayInput = () => {
     }
     event.currentTarget.reset();
   };
-  /*
-  const deleteItem = (event: React.FormEvent<HTMLInputElement>) => {
-    const key = event.currentTarget.value;
-    list.splice(parseInt(key), 1);
-    setList([...list]);
-  };*/
 
   return (
     <>

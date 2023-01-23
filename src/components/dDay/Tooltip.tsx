@@ -1,5 +1,4 @@
 import React from "react";
-import JuiceFont from "../common/JuiceFont";
 
 interface ITooltip {
   children: React.ReactNode;

@@ -7,13 +7,18 @@ import SetDday from "./components/dDay/SetDday";
 import Horizon from "./components/common/Horizon";
 import Skeleton from "./components/common/Skeleton";
 import Toast from "./components/dDay/Toast";
+import { useState } from "react";
+import SetBtn from "./components/dDay/SetBtn";
 
 function App() {
+  const [open, setOpen] = useState(false);
   const dDayUserInputList = useRecoilValue<UserInput[]>(dDayListState);
   const isError = useRecoilValue<boolean>(isErrorState);
+  const handleModal = () => setOpen((prev) => !prev);
   return (
     <div>
       {isError && <Toast />}
+      {open && <SetDday onClick={handleModal} />}
       <Layout>
         <Profile />
         <Horizon />
@@ -22,7 +27,7 @@ function App() {
             dDayName={dDayUserInputList[0].dDayName}
             date={dDayUserInputList[0].date}
           />
-          <SetDday />
+          <SetBtn onClick={handleModal} isHover />
         </div>
         <Horizon />
         <div className="flex flex-col gap-6 mx-4 my-6">
