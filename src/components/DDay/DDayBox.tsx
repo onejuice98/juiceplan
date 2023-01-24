@@ -14,7 +14,7 @@ interface IDDAYS {
 
 const DDayBox = ({ dDayName, date, isSetBtn, isFirst, isDelete }: IDDAYS) => {
   const dragControls = useDragControls();
-
+  const [hover, setHover] = useState(false);
   // 오늘을 표기하기 위한 today
   const today = new Date();
   // D-day 계산
@@ -45,14 +45,22 @@ const DDayBox = ({ dDayName, date, isSetBtn, isFirst, isDelete }: IDDAYS) => {
 
             {dDayName}
           </JuiceFont>
-          <Tooltip message={`주말 : ${weekend} 평일 : ${days - weekend}`}>
-            <JuiceFont
-              isBold
-              isSmall
-              others="w-fit cursor-pointer text-xs text-gray-700 "
+          <Tooltip
+            message={`주말 : ${weekend} 평일 : ${days - weekend}`}
+            hover={hover}
+          >
+            <div
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
             >
-              {date} D{days > 0 ? days * -1 : `+${days * -1}`}
-            </JuiceFont>
+              <JuiceFont
+                isBold
+                isSmall
+                others="w-fit cursor-pointer text-xs text-gray-700 "
+              >
+                {date} D{days > 0 ? days * -1 : `+${days * -1}`}
+              </JuiceFont>
+            </div>
           </Tooltip>
         </div>
         {isSetBtn && (

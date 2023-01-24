@@ -3,8 +3,8 @@ import { useRecoilState } from "recoil";
 import { dDayListState, UserInput } from "../../recoil/dDay";
 import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
 import Divider from "../common/Divider";
-import DDayInput from "../DDay/DDayInput";
-import DDayBox from "../DDay/DDayBox";
+import DDayInput from "./DDayInput";
+import DDayBox from "./DDayBox";
 
 interface ISetDday {
   modalClose: () => void;

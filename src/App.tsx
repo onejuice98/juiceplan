@@ -2,13 +2,13 @@ import { useRecoilValue } from "recoil";
 import Layout from "./components/layout/Layout";
 import Profile from "./components/profile/Profile";
 import { dDayListState, isErrorState, UserInput } from "./recoil/dDay";
-import DDayList from "./components/DDay/DDayList";
+import DDayList from "./components/dDay/DDayList";
 import Skeleton from "./components/common/Skeleton";
 import { useState } from "react";
 import Toast from "./components/common/Toast";
 import SetBtn from "./components/common/SetBtn";
 import Divider from "./components/common/Divider";
-import DDayBox from "./components/DDay/DDayBox";
+import DDayBox from "./components/dDay/DDayBox";
 
 function App() {
   const [open, setOpen] = useState(false);
