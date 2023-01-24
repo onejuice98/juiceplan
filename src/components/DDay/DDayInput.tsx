@@ -46,13 +46,13 @@ const DayInput = () => {
             type="text"
             placeholder="D-day 이름"
             onChange={handleChange}
-            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse"
+            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs"
           />
           <input
             name="date"
             type="date"
             onChange={handleChange}
-            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse"
+            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs"
           />
           <button
             type="submit"
