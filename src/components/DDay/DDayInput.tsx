@@ -18,13 +18,15 @@ const DayInput = () => {
       ...userInputs,
       [event.currentTarget.name]: event.currentTarget.value,
     });
+    console.log(userInputs);
   };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (
       userInputs.dDayName === "" ||
       userInputs.date === "" ||
-      list.length === 5
+      list.length === 5 ||
+      list.map((item) => item.dDayName === userInputs.dDayName).includes(true)
     ) {
       return setIsError(true);
     } else {
@@ -32,7 +34,6 @@ const DayInput = () => {
     }
     event.currentTarget.reset();
   };
-
   return (
     <>
       <div className="">

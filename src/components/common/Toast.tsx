@@ -6,7 +6,7 @@ const Toast = () => {
   return (
     <div
       id="toast-danger"
-      className="absolute z-[999] top-2 right-2 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+      className="absolute z-[999] top-2 right-2 flex items-center max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
       role="alert"
     >
       <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
@@ -25,7 +25,7 @@ const Toast = () => {
         </svg>
       </div>
       <div className="ml-3 text-sm font-normal">
-        최대 5개 설정 가능 및 빈칸 금지!
+        최대 5개! 중복 및 빈칸 금지!
       </div>
       <button
         type="button"

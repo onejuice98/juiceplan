@@ -13,7 +13,7 @@ export const userDday = atom<number>({
 
 export const dDayUserInputState = atom<UserInput>({
   key: "dDayUserInputState",
-  default: { dDayName: "누군가의 전역일", date: "2023-06-30", id: 0 },
+  default: { dDayName: "", date: "", id: 0 },
 });
 
 export const dDayListState = atom<UserInput[]>({
