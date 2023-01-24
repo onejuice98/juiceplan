@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/juiceplan/static/css/main.8eb6c5e9.css",
-    "main.js": "/juiceplan/static/js/main.65146b53.js",
+    "main.css": "/juiceplan/static/css/main.5ba7c8c5.css",
+    "main.js": "/juiceplan/static/js/main.a65a0137.js",
     "index.html": "/juiceplan/index.html",
-    "main.8eb6c5e9.css.map": "/juiceplan/static/css/main.8eb6c5e9.css.map",
-    "main.65146b53.js.map": "/juiceplan/static/js/main.65146b53.js.map"
+    "main.5ba7c8c5.css.map": "/juiceplan/static/css/main.5ba7c8c5.css.map",
+    "main.a65a0137.js.map": "/juiceplan/static/js/main.a65a0137.js.map"
   },
   "entrypoints": [
-    "static/css/main.8eb6c5e9.css",
-    "static/js/main.65146b53.js"
+    "static/css/main.5ba7c8c5.css",
+    "static/js/main.a65a0137.js"
   ]
 }
