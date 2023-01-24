@@ -2,13 +2,13 @@ import { useRecoilValue } from "recoil";
 import Layout from "./components/layout/Layout";
 import Profile from "./components/profile/Profile";
 import { dDayListState, isErrorState, UserInput } from "./recoil/dDay";
-import Dday from "./components/dDay/Dday";
-import SetDday from "./components/dDay/SetDday";
-import Horizon from "./components/common/Horizon";
+import DDayList from "./components/DDay/DDayList";
 import Skeleton from "./components/common/Skeleton";
-import Toast from "./components/dDay/Toast";
 import { useState } from "react";
-import SetBtn from "./components/dDay/SetBtn";
+import Toast from "./components/common/Toast";
+import SetBtn from "./components/common/SetBtn";
+import Divider from "./components/common/Divider";
+import DDayBox from "./components/DDay/DDayBox";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -16,25 +16,30 @@ function App() {
   const isError = useRecoilValue<boolean>(isErrorState);
   const handleModal = () => setOpen((prev) => !prev);
   return (
-    <div>
+    <>
       {isError && <Toast />}
-      {open && <SetDday onClick={handleModal} />}
+      {open && <DDayList modalClose={handleModal} />}
       <Layout>
-        <Profile />
-        <Horizon />
-        <div className="flex justify-between mx-4 items-center gap-2">
-          <Dday
-            dDayName={dDayUserInputList[0].dDayName}
-            date={dDayUserInputList[0].date}
-          />
-          <SetBtn onClick={handleModal} isHover />
-        </div>
-        <Horizon />
-        <div className="flex flex-col gap-6 mx-4 my-6">
-          <Skeleton />
+        <div className="flex flex-col mx-4 gap-3">
+          <Profile />
+
+          <Divider />
+
+          <div className="flex justify-between items-center gap-2">
+            <DDayBox
+              dDayName={dDayUserInputList[0].dDayName}
+              date={dDayUserInputList[0].date}
+            />
+            <SetBtn onClick={handleModal} isHover />
+          </div>
+          <Divider />
+
+          <div className="flex flex-col gap-6">
+            <Skeleton />
+          </div>
         </div>
       </Layout>
-    </div>
+    </>
   );
 }
 

@@ -6,7 +6,6 @@ import {
   isErrorState,
   UserInput,
 } from "../../recoil/dDay";
-import Horizon from "../common/Horizon";
 
 const DayInput = () => {
   const setIsError = useSetRecoilState<boolean>(isErrorState);
@@ -36,11 +35,11 @@ const DayInput = () => {
 
   return (
     <>
-      <div className="mt-4">
+      <div className="">
         <form
           name="isSubmit"
           onSubmit={handleSubmit}
-          className="flex justify-between px-4"
+          className="flex justify-between"
         >
           <input
             name="dDayName"
@@ -62,7 +61,6 @@ const DayInput = () => {
             +
           </button>
         </form>
-        <Horizon />
       </div>
     </>
   );

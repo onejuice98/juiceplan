@@ -23,7 +23,6 @@ const Toast = () => {
             clip-rule="evenodd"
           ></path>
         </svg>
-        <span className="sr-only">Error icon</span>
       </div>
       <div className="ml-3 text-sm font-normal">D-DAY 설정 최대 5개입니다.</div>
       <button
