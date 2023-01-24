@@ -12,26 +12,15 @@ interface ISetDday {
 const SetDday = ({ modalClose }: ISetDday) => {
   const [dDayList, setdDayList] = useRecoilState<UserInput[]>(dDayListState);
   const dragControls = useDragControls();
-  useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-    };
-  }, []);
+
   const deleteItem = (name: string | undefined) => {
     dDayList.length !== 1 &&
       setdDayList(dDayList.filter((item) => item.dDayName !== name));
   };
   return (
-    <div className="z-10 absolute top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75]">
-      <div className="h-full flex justify-center items-center">
-        <div className="w-[80%] h-[80%] z-10 bg-white opacity-1 rounded-lg flex flex-col justify-between">
+    <div className="z-10 fixed top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75]">
+      <div className="h-full flex justify-center py-12">
+        <div className="w-[80%] h-fit z-10 bg-white opacity-1 rounded-lg flex flex-col justify-between">
           <div className="flex flex-col mt-4 mx-4 gap-3">
             <DDayInput />
             <Divider />
@@ -41,7 +30,7 @@ const SetDday = ({ modalClose }: ISetDday) => {
                 axis="y"
                 values={dDayList}
                 onReorder={setdDayList}
-                className="h-full flex flex-col gap-5"
+                className="h-full flex flex-col gap-5 last:mb-4"
               >
                 {dDayList.map((value, idx) => (
                   <Reorder.Item
@@ -68,7 +57,7 @@ const SetDday = ({ modalClose }: ISetDday) => {
             </AnimatePresence>
           </div>
 
-          <div className="flex justify-end items-end bg-gray-100 rounded-lg">
+          <div className="flex justify-end items-end bg-gray-100 rounded-b-lg">
             <button
               className="w-20 h-10 bg-red-500 text-white rounded-md shadow-lg m-4 font-mono font-medium hover:bg-red-700"
               onClick={modalClose}
