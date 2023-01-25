@@ -47,13 +47,16 @@ const DayInput = () => {
             type="text"
             placeholder="D-day 이름"
             onChange={handleChange}
+            required
             className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs"
           />
           <input
             name="date"
             type="date"
             onChange={handleChange}
-            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs"
+            data-placeholder="날짜 선택"
+            required
+            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs before:content-[attr(data-placeholder)] before:w-full focus:before:hidden valid:before:hidden"
           />
           <button
             type="submit"
