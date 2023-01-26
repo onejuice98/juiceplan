@@ -15,8 +15,10 @@
     "axios": "^1.2.2",
     "buffer": "^6.0.3",
     "framer-motion": "^8.5.0",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "react-xml-parser": "^1.1.8",
     "recoil": "^0.7.6",
@@ -56,5 +58,6 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4"
   },
-  "homepage": "https://onejuice98.github.io/juiceplan"
+  "homepage": "https://onejuice98.github.io/juiceplan",
+  "proxy": "http://localhost:3001"
 }

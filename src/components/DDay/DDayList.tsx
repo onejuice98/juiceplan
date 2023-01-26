@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { dDayListState, UserInput } from "../../recoil/dDay";
 import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
