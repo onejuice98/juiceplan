@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import Diary from "./pages/Diary";
+import DayDiary from "./pages/Diary/DayDiary";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 const App = () => {
@@ -6,6 +8,8 @@ const App = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Main />} />
+      <Route path="/diary" element={<Diary />} />
+      <Route path="/diary/:dayId" element={<DayDiary />} />
     </Routes>
   );
 };
