@@ -73,7 +73,9 @@ const Diary = () => {
               className={`h-28 flex flex-col items-center border-b border-r`}
               key={dayIdx}
             >
-              <Link to={format(currentDate, "yy-MM") + "-" + format(day, "dd")}>
+              <Link
+                to={format(currentDate, "yyyy-MM") + "-" + format(day, "dd")}
+              >
                 <div
                   className={`flex text-xs font-bold  h-6 w-6 justify-center items-center cursor-pointer`}
                 >
