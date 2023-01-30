@@ -49,7 +49,7 @@ const DayDiary = () => {
         </button>
         <div></div>
       </div>
-      <div className="bg-gray-100/[0.7] p-4" ref={divRef}>
+      <div className="bg-gray-100/[0.7]" ref={divRef}>
         <LeftCanvas
           leftWidth={width}
           leftHeight={height}

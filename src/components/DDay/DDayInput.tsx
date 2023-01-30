@@ -18,7 +18,6 @@ const DayInput = () => {
       ...userInputs,
       [event.currentTarget.name]: event.currentTarget.value,
     });
-    console.log(userInputs);
   };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

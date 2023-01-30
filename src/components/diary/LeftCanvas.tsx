@@ -1,5 +1,6 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import { createTextChangeRange } from "typescript";
+import Editor from "./Editor";
 
 interface ILCanvas {
   leftWidth: number;
@@ -62,8 +63,16 @@ const LeftCanvas = ({
     setIsDrawing(false);
   };
 
+  /**
+   * <canvas
+        ref={canvasRef2}
+        width={rightWidth}
+        height={rightHeight}
+        className="border-2 border-gray-400 rounded-md"
+      ></canvas>
+   */
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 h-full divide-x-2">
       <div>
         <canvas
           ref={canvasRef}
@@ -77,13 +86,7 @@ const LeftCanvas = ({
         ></canvas>
         <button onClick={toRight}> 옆으로! </button>
       </div>
-
-      <canvas
-        ref={canvasRef2}
-        width={rightWidth}
-        height={rightHeight}
-        className="border-2 border-gray-400 rounded-md"
-      ></canvas>
+      <Editor />
     </div>
   );
 };
