@@ -18,3 +18,19 @@ export const canvasHeight = atom<number>({
 export const leftContext = atom<CanvasRenderingContext2D>({
   key: "leftContext",
 });
+
+export interface DiaryContext {
+  id: string;
+  context: string;
+}
+
+export const diaryContextState = atom<DiaryContext[]>({
+  key: "diaryContextState",
+  default: [{ id: "context0", context: "" }],
+});
+
+export type textSizeType = "text-base" | "text-sm" | "text-lg" | string;
+export const textSize = atom<textSizeType>({
+  key: "textSize",
+  default: "text-base",
+});

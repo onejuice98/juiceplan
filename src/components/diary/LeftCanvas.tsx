@@ -86,7 +86,7 @@ const LeftCanvas = ({
         ></canvas>
         <button onClick={toRight}> 옆으로! </button>
       </div>
-      <Editor />
+      <Editor day={"2023-01-02"} />
     </div>
   );
 };
