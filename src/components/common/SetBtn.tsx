@@ -1,7 +1,13 @@
-import { DragControls } from "framer-motion";
 import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { textSize, textSizeType } from "../../recoil/diary";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  itemTextBgColor,
+  itemTextBgColorType,
+  itemTextColor,
+  itemTextColorType,
+  itemTextSize,
+  itemTextSizeType,
+} from "../../recoil/diary";
 
 interface ISetBtn {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -18,10 +24,21 @@ const SetBtn = ({
   isSettingBox,
 }: ISetBtn) => {
   const [hover, setHover] = useState(false);
-  const setTextSize = useSetRecoilState<textSizeType>(textSize);
+  const setTextSize = useSetRecoilState<itemTextSizeType>(itemTextSize);
+  const setTextColor = useSetRecoilState<itemTextColorType>(itemTextColor);
+  const setTextBgColor =
+    useSetRecoilState<itemTextBgColorType>(itemTextBgColor);
   const handleTextSize = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value: textSizeType = event.currentTarget.value;
+    const value: itemTextSizeType = event.currentTarget.value;
     setTextSize(value);
+  };
+  const handleTextColor = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value: itemTextColorType = event.currentTarget.value;
+    setTextColor(value);
+  };
+  const handleTextBgColor = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value: itemTextBgColorType = event.currentTarget.value;
+    setTextBgColor(value);
   };
   return (
     <>
@@ -57,6 +74,19 @@ const SetBtn = ({
             <option value="text-base"> 적당히 </option>
             <option value="text-sm"> 작게 </option>
             <option value="text-lg"> 크게 </option>
+          </select>
+          <select onChange={handleTextColor}>
+            <option value=""> 검정 </option>
+            <option value="text-green-500"> 초롱 </option>
+            <option value="text-blue-500"> 파랑 </option>
+            <option value="text-red-500"> 빨강 </option>
+          </select>
+          <select onChange={handleTextBgColor}>
+            <option value=""> 기본 </option>
+            <option value="#FFFF00"> 노랑 </option>
+            <option value="#00FEFE"> 청록 </option>
+            <option value="#00FF00"> 녹색 </option>
+            <option value="#FF00FF"> 분홍 </option>
           </select>
           <button onClick={onClick}> 적용 </button>
         </div>

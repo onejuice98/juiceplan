@@ -1,16 +1,13 @@
 import { FormEvent, useState } from "react";
 import { useRecoilState } from "recoil";
-import { diaryText } from "../../recoil/diary";
 
 const DiaryInput = () => {
   const [text, setText] = useState("");
-  const [textList, setTextList] = useRecoilState<string[]>(diaryText);
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
     setText(event.currentTarget.value);
   };
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setTextList([...textList, text]);
     event.currentTarget.reset();
   };
   return (

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { canvasHeight, canvasWidth, diaryText } from "../../recoil/diary";
+import { canvasHeight, canvasWidth } from "../../recoil/diary";
 
 interface ICanvasLimit {
   maxWidth: number | undefined;

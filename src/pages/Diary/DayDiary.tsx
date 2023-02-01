@@ -5,7 +5,7 @@ import JuiceFont from "../../components/common/JuiceFont";
 import CanvasInput from "../../components/diary/CanvasInput";
 import DiaryInput from "../../components/diary/DiaryInput";
 import LeftCanvas from "../../components/diary/LeftCanvas";
-import { canvasHeight, canvasWidth, diaryText } from "../../recoil/diary";
+import { canvasHeight, canvasWidth } from "../../recoil/diary";
 
 interface ICanvasProps {
   width: number;
@@ -15,7 +15,6 @@ const DayDiary = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const { dayId } = useParams();
   const history = useNavigate();
-  const list = useRecoilValue<string[]>(diaryText);
 
   const width = useRecoilValue<number>(canvasWidth);
   const height = useRecoilValue<number>(canvasHeight);
