@@ -1,5 +1,7 @@
 import { RefObject, useEffect, useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 import { createTextChangeRange } from "typescript";
+import { bgImage } from "../../recoil/diary";
 import Editor from "./Editor";
 
 interface ILCanvas {
@@ -20,7 +22,7 @@ const LeftCanvas = ({
     useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D>();
   const [context2, setContext2] = useState<CanvasRenderingContext2D>();
-
+  const bgImages = useRecoilState<string>(bgImage);
   const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const [leftToRight, setLeftToRight] = useState(false);
   useEffect(() => {
@@ -48,7 +50,7 @@ const LeftCanvas = ({
   }, [leftToRight]);
   const drawing = (nativeEvent: any) => {
     const { offsetX, offsetY } = nativeEvent.nativeEvent;
-    if (isDrawing) {
+    if (!isDrawing) {
       context?.beginPath();
       context?.moveTo(offsetX, offsetY);
     } else {
@@ -71,19 +73,38 @@ const LeftCanvas = ({
         className="border-2 border-gray-400 rounded-md"
       ></canvas>
    */
+  useEffect(() => {
+    const canvas2 = canvasRef2.current;
+    const ctx2 = canvas2?.getContext("2d");
+
+    ctx2 && setContext2(ctx2);
+
+    const img = new Image();
+    img.onload = () => {
+      context2?.drawImage(img, 0, 0, 435, 662);
+    };
+    img.src = bgImages[0];
+  }, [bgImages]);
   return (
     <div className="grid grid-cols-2 h-full divide-x-2">
       <div>
         <canvas
           ref={canvasRef}
-          width={leftWidth}
-          height={leftHeight}
-          onMouseEnter={startDrawing}
+          width="435px"
+          height="662px"
           onMouseDown={stopDrawing}
           onMouseUp={startDrawing}
           onMouseMove={drawing}
-          className="border-2 border-gray-400 rounded-md"
-        ></canvas>
+          onMouseLeave={stopDrawing}
+        >
+          <canvas
+            ref={canvasRef2}
+            width="435px"
+            height="662px"
+            className="z-2 bg-blue-500"
+          ></canvas>
+        </canvas>
+
         <button onClick={toRight}> 옆으로! </button>
       </div>
       <Editor day={"2023-01-02"} />

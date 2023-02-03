@@ -155,3 +155,14 @@ export const diaryContent = atom<diaryContentType[]>({
     },
   ],
 });
+
+// template types
+export const isCanvas = atom<boolean>({
+  key: "isCanvasState",
+  default: false,
+});
+
+export const bgImage = atom<string>({
+  key: "bgImageState",
+  default: "",
+});
