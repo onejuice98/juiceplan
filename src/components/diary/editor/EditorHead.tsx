@@ -7,11 +7,11 @@ import {
   diaryItemType,
   isDisabled,
   titleText,
-} from "../../recoil/diary";
-import JuiceFont from "../common/JuiceFont";
+} from "../../../recoil/diary";
+import JuiceFont from "../../common/JuiceFont";
 
 interface IEditorHead {
-  day: string;
+  day: string | undefined;
 }
 /**
  * Editor 의 최상단부 Save / Edit 기능

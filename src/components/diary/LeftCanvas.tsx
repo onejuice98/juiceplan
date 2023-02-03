@@ -2,7 +2,7 @@ import { RefObject, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { createTextChangeRange } from "typescript";
 import { bgImage } from "../../recoil/diary";
-import Editor from "./Editor";
+import Editor from "./editor/Editor";
 
 interface ILCanvas {
   leftWidth: number;
@@ -107,7 +107,6 @@ const LeftCanvas = ({
 
         <button onClick={toRight}> 옆으로! </button>
       </div>
-      <Editor day={"2023-01-02"} />
     </div>
   );
 };

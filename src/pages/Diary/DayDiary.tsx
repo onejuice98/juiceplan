@@ -1,42 +1,51 @@
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import Divider from "../../components/common/Divider";
 import JuiceFont from "../../components/common/JuiceFont";
-import CanvasInput from "../../components/diary/CanvasInput";
-import DiaryInput from "../../components/diary/DiaryInput";
-import LeftCanvas from "../../components/diary/LeftCanvas";
+import Editor from "../../components/diary/editor/Editor";
 import SideBar from "../../components/diary/SideBar";
-import { canvasHeight, canvasWidth } from "../../recoil/diary";
+import Template from "../../components/diary/template/Template";
+import { bgImage } from "../../recoil/diary";
 
-interface ICanvasProps {
-  width: number;
-  height: number;
-}
 const DayDiary = () => {
-  const divRef = useRef<HTMLDivElement>(null);
   const { dayId } = useParams();
-  const history = useNavigate();
 
-  const width = useRecoilValue<number>(canvasWidth);
-  const height = useRecoilValue<number>(canvasHeight);
+  const templateImg = useRecoilValue<string>(bgImage);
 
-  const [rightCanvanWidth, setRightCanvasWidth] = useState<number>(0);
-  const [rightCanvasHeight, setRightCanvasHeight] = useState<number>(0);
+  const divRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const [templateWidth, setTemplateWidth] = useState<number>(0);
+  const [templateHeight, setTemplateHeight] = useState<number>(0);
 
+  const handleResize = () => {
+    divRef.current && setTemplateWidth(divRef.current?.offsetWidth);
+    divRef.current && setTemplateHeight(divRef.current?.offsetHeight);
+  };
   useEffect(() => {
-    divRef.current && setRightCanvasHeight(divRef.current?.offsetHeight - 10);
-    divRef.current && setRightCanvasWidth(divRef.current?.offsetWidth - 10);
-  }, [divRef]);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="grid grid-cols-[240px_1fr] w-[100vw] h-[100vh]">
-      <SideBar day={dayId} />
-      <div className="bg-gray-100/[0.7]" ref={divRef}>
-        <LeftCanvas
-          leftWidth={width}
-          leftHeight={height}
-          rightWidth={rightCanvanWidth}
-          rightHeight={rightCanvasHeight}
-        />
+    <div className="flex flex-col w-[100vw] h-[100vh] bg-gray-100/[0.7]">
+      <SideBar />
+      <Divider />
+      <div className="flex divide-x-[1px] w-full h-full">
+        <div className="w-[50vw]" ref={divRef}>
+          <Template width={templateWidth} height={templateHeight} />
+        </div>
+        <div className="w-[calc(50vw-1px)] h-[calc(100vh-57px)]">
+          <img
+            src={templateImg}
+            className={`${
+              templateImg === "" && "hidden"
+            } flex justify-center items-center absolute overflow-hidden z-[-1] w-[inherit] h-[inherit]`}
+          />
+          <Editor day={dayId} />
+        </div>
       </div>
     </div>
   );

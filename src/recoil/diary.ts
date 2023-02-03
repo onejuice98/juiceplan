@@ -41,7 +41,7 @@ export type itemStyleType = {
   textBg: itemTextBgColorType;
 };
 export type diaryContentType = {
-  day: string;
+  day: string | undefined;
   title: string;
   content: diaryItemType[];
 };

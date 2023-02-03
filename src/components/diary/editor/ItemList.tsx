@@ -14,8 +14,8 @@ import {
   itemTextColorType,
   itemTextSize,
   itemTextSizeType,
-} from "../../recoil/diary";
-import SetBtn from "../common/SetBtn";
+} from "../../../recoil/diary";
+import SetBtn from "../../common/SetBtn";
 
 /**
  * Editor의 중하단부, context의 List를 더하거나 CSS를 수정한다. 내용을 추가 할 수 있다.

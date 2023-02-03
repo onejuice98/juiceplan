@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { isDisabled, titleText } from "../../recoil/diary";
-import JuiceFont from "../common/JuiceFont";
+import { isDisabled, titleText } from "../../../recoil/diary";
+import JuiceFont from "../../common/JuiceFont";
 
 /**
  * Editor 의 상단부, title을 입력할 수 있게 된다.
