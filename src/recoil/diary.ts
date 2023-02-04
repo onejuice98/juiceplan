@@ -156,13 +156,33 @@ export const diaryContent = atom<diaryContentType[]>({
   ],
 });
 
-// template types
-export const isCanvas = atom<boolean>({
-  key: "isCanvasState",
-  default: false,
-});
-
+// template recoil
+/**
+ * canvas background Image 설정을 위한 상태 (URL)
+ * @type string
+ * @default ""
+ */
 export const bgImage = atom<string>({
   key: "bgImageState",
   default: "",
+});
+
+/**
+ * canvas background Image + 내가 그린 것을 합친 image 상태 (URL)
+ * @type string | undefined
+ * @default ""
+ */
+export const resultTemplate = atom<string | undefined>({
+  key: "resultTemplate",
+  default: "",
+});
+
+/**
+ * canvas에 그린 것을 적용하기 위한 상태
+ * @type boolean
+ * @default false
+ */
+export const apply = atom<boolean>({
+  key: "applyState",
+  default: false,
 });

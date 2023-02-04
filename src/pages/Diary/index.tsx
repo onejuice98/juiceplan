@@ -1,9 +1,7 @@
 import {
   addDays,
   addMonths,
-  endOfWeek,
   format,
-  lastDayOfDecade,
   startOfDay,
   startOfMonth,
   startOfWeek,
