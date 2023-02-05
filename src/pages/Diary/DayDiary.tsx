@@ -26,7 +26,6 @@ const DayDiary = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(template);
   return (
     <div className="flex flex-col w-[100vw] h-[100vh] bg-gray-100/[0.7]">
       <MenuBar />
@@ -34,7 +33,7 @@ const DayDiary = () => {
         <div className="w-[50vw]" ref={divRef}>
           <Template width={templateWidth} height={templateHeight} />
         </div>
-        <div className="w-[calc(50vw-1px)] h-[calc(100vh-57px)]">
+        <div className="w-[calc(50vw-1px)] h-[calc(100vh-64px)]">
           <img
             src={isApply ? template : templateImg}
             className={`${

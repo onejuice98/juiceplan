@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   diaryContent,
   diaryContentType,
   diaryItemList,
   diaryItemType,
   isDisabled,
+  resultTemplate,
   titleText,
 } from "../../../recoil/diary";
 import JuiceFont from "../../common/JuiceFont";
@@ -20,24 +21,52 @@ interface IEditorHead {
  */
 const EditorHead = ({ day }: IEditorHead) => {
   const [disabled, setDisabled] = useRecoilState<boolean>(isDisabled);
-  const title = useRecoilValue<string>(titleText);
+  const titleName = useRecoilValue<string>(titleText);
   const items = useRecoilValue<diaryItemType[]>(diaryItemList);
+  const template = useRecoilValue<string | undefined>(resultTemplate);
   const [diary, setDiary] = useRecoilState<diaryContentType[]>(diaryContent);
-  // 여기 뭔가 이상함ㅋㅋ 왜지?
-  useEffect(() => {
-    !disabled &&
-      setDiary([...diary, { day: day, title: title, content: items }]);
-    console.log(diary);
-  }, [disabled]);
+
+  const onDisabled = () => {
+    setDisabled((prev) => !prev);
+  };
+  const onSave = () => {
+    if (disabled) {
+      const findIndex = diary.findIndex((element) => element.day === day);
+      if (findIndex === -1) {
+        setDiary([
+          ...diary,
+          { day: day, title: titleName, content: items, template: template },
+        ]);
+      } else {
+        let copyDiary = [...diary];
+        copyDiary[findIndex] = {
+          day: day,
+          title: titleName,
+          content: items,
+          template: template,
+        };
+        setDiary(copyDiary);
+      }
+      console.log(diary);
+    }
+  };
   return (
     <div className="flex justify-between items-center">
       <JuiceFont>{day}</JuiceFont>
-      <button
-        onClick={() => setDisabled((prev) => !prev)}
-        className="font-mono bg-emerald-400 p-1 rounded-md shadow-md text-white hover:bg-emerald-600 duration-300"
-      >
-        {disabled ? "Edit" : "Save"}
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={onDisabled}
+          className="font-mono bg-emerald-400 p-1 rounded-md shadow-md text-white hover:bg-emerald-600 duration-300"
+        >
+          {disabled ? "활성화" : "비활성화"}
+        </button>
+        <button
+          onClick={onSave}
+          className="font-mono bg-emerald-400 p-1 rounded-md shadow-md text-white hover:bg-emerald-600 duration-300"
+        >
+          저장하기
+        </button>
+      </div>
     </div>
   );
 };

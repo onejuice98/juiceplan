@@ -66,7 +66,6 @@ const ItemList = () => {
     }
     setItems(tempItemList);
   }, [disabled, style]);
-
   return (
     <Reorder.Group axis="y" values={items} onReorder={setItems}>
       <div>

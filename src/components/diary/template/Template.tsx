@@ -1,6 +1,12 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { apply, bgImage, resultTemplate } from "../../../recoil/diary";
+import {
+  apply,
+  bgImage,
+  resultTemplate,
+  strokeColor,
+  strokeWidth,
+} from "../../../recoil/diary";
 
 interface ITemplate {
   width: number;
@@ -16,25 +22,30 @@ const Template = ({ width, height }: ITemplate) => {
   const canvasRef: RefObject<HTMLCanvasElement> =
     useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D>();
-  const [drawContext, setDrawContext] = useState<CanvasRenderingContext2D>();
   const templateImg = useRecoilState<string>(bgImage);
   const [isDrawing, SetIsDrawing] = useState<boolean>(false);
+  const stroke = useRecoilValue<number>(strokeWidth);
+  const color = useRecoilValue<string>(strokeColor);
+
   const setResultTemplate = useSetRecoilState<string | undefined>(
     resultTemplate
   );
   const isApply = useRecoilValue<boolean>(apply);
+
+  // stroke style 지정 (stroke가 변할 때 마다 실행)
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (ctx) {
-      ctx.strokeStyle = "black";
-      ctx.lineWidth = 2.5;
-      setDrawContext(ctx);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = stroke;
       setContext(ctx);
     }
+  }, [stroke, color]);
+  // background img 지정 (width, height, 배경 바뀔 때 마다 실행)
+  useEffect(() => {
     const img = new Image();
     img.src = templateImg[0];
-
     img.onload = () => {
       context?.drawImage(img, 0, 0, width, height);
     };
@@ -46,13 +57,12 @@ const Template = ({ width, height }: ITemplate) => {
   }, [isApply]);
   const drawing = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     const { offsetX, offsetY } = event.nativeEvent;
-
     if (!isDrawing) {
-      drawContext?.beginPath();
-      drawContext?.moveTo(offsetX, offsetY);
+      context?.beginPath();
+      context?.moveTo(offsetX, offsetY);
     } else {
-      drawContext?.lineTo(offsetX, offsetY);
-      drawContext?.stroke();
+      context?.lineTo(offsetX, offsetY);
+      context?.stroke();
     }
   };
 

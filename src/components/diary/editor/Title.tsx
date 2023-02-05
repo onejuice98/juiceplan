@@ -15,7 +15,7 @@ const Title = () => {
 
   // disabled 가 켜질때만 저장
   useEffect(() => {
-    disabled && setTitle(watch("titleContent"));
+    !disabled && setTitle(watch("titleContent"));
   }, [disabled]);
 
   return (

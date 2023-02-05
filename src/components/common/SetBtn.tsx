@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import {
   itemTextBgColor,
   itemTextBgColorType,
@@ -8,6 +8,8 @@ import {
   itemTextSize,
   itemTextSizeType,
 } from "../../recoil/diary";
+import GrayText from "./GrayText";
+import Select from "./Select";
 
 interface ISetBtn {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -68,27 +70,51 @@ const SetBtn = ({
         </svg>
       </button>
       {isSettingBox && hover && (
-        <div className="w-32 h-72 bg-amber-200 absolute translate-y-[45%] duration-300 z-[999]">
-          <button onClick={() => setHover(false)}> X </button>
-          <select onChange={handleTextSize}>
-            <option value="text-base"> 적당히 </option>
-            <option value="text-sm"> 작게 </option>
-            <option value="text-lg"> 크게 </option>
-          </select>
-          <select onChange={handleTextColor}>
-            <option value=""> 검정 </option>
-            <option value="text-green-500"> 초롱 </option>
-            <option value="text-blue-500"> 파랑 </option>
-            <option value="text-red-500"> 빨강 </option>
-          </select>
-          <select onChange={handleTextBgColor}>
-            <option value=""> 기본 </option>
-            <option value="#FFFF00"> 노랑 </option>
-            <option value="#00FEFE"> 청록 </option>
-            <option value="#00FF00"> 녹색 </option>
-            <option value="#FF00FF"> 분홍 </option>
-          </select>
-          <button onClick={onClick}> 적용 </button>
+        <div className="flex flex-col justify-between p-4 rounded-md w-48 h-72 bg-cyan-200 absolute translate-y-[45%] z-[999]">
+          <div>
+            <GrayText>Text Size</GrayText>
+            <Select onSelectChange={handleTextSize}>
+              <option value="text-base"> 적당히 </option>
+              <option value="text-sm"> 작게 </option>
+              <option value="text-lg"> 크게 </option>
+            </Select>
+          </div>
+          <div>
+            <GrayText>Text Color</GrayText>
+            <Select onSelectChange={handleTextColor}>
+              <option value=""> 검정 </option>
+              <option value="text-green-500"> 초롱 </option>
+              <option value="text-blue-500"> 파랑 </option>
+              <option value="text-red-500"> 빨강 </option>
+            </Select>
+          </div>
+
+          <div>
+            <GrayText>HighLight Text</GrayText>
+            <Select onSelectChange={handleTextBgColor}>
+              <option value=""> 기본 </option>
+              <option value="#FFFF00"> 노랑 </option>
+              <option value="#00FEFE"> 청록 </option>
+              <option value="#00FF00"> 녹색 </option>
+              <option value="#FF00FF"> 분홍 </option>
+            </Select>
+          </div>
+
+          <div className="flex justify-end gap-2">
+            <button
+              className="w-14 h-8 bg-red-500 hover:bg-red-700 text-white rounded-md shadow-md duration-300"
+              onClick={() => setHover(false)}
+            >
+              닫기
+            </button>
+            <button
+              className="w-14 h-8 bg-green-500 hover:bg-green-700 text-white rounded-md shadow-md duration-300"
+              onClick={onClick}
+            >
+              {" "}
+              적용{" "}
+            </button>
+          </div>
         </div>
       )}
     </>

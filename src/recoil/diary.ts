@@ -44,6 +44,7 @@ export type diaryContentType = {
   day: string | undefined;
   title: string;
   content: diaryItemType[];
+  template: string | undefined;
 };
 
 /**
@@ -152,6 +153,7 @@ export const diaryContent = atom<diaryContentType[]>({
           },
         },
       ],
+      template: "",
     },
   ],
 });
@@ -185,4 +187,24 @@ export const resultTemplate = atom<string | undefined>({
 export const apply = atom<boolean>({
   key: "applyState",
   default: false,
+});
+
+/**
+ * canvas strokeStyle 제어를 위한 상태 (strokeWidth)
+ * @type number
+ * @default 2.5
+ */
+export const strokeWidth = atom<number>({
+  key: "strokeWidthState",
+  default: 2.5,
+});
+
+/**
+ * canvas strokeStyle 제어를 위한 상태 (color)
+ * @type string
+ * @default black
+ */
+export const strokeColor = atom<string>({
+  key: "strokeColorState",
+  default: "#000000",
 });
