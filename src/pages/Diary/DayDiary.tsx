@@ -35,9 +35,9 @@ const DayDiary = () => {
         </div>
         <div className="w-[calc(50vw-1px)] h-[calc(100vh-64px)]">
           <img
-            src={isApply ? template : templateImg}
+            src={template}
             className={`${
-              templateImg === "" && "hidden"
+              !isApply && "hidden"
             } flex justify-center items-center absolute overflow-hidden z-[-1] w-[inherit] h-[inherit]`}
           />
           <Editor day={dayId} />

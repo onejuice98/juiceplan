@@ -1,6 +1,7 @@
 import { Reorder } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   diaryContent,
@@ -26,8 +27,8 @@ interface IEditor {
   day: string | undefined; // yyyy-MM-dd
 }
 /**
- * Editor의 중하단부, context의 List를 더하거나 CSS를 수정한다. 내용을 추가 할 수 있다.
- * @returns Item List 가 출력 (Item -> 내용)
+ * Editor의 핵심!, context의 List를 더하거나 CSS를 수정한다. 내용을 추가 할 수 있다.
+ * @returns Item List 가 출력 (Item -> 내용) / Save button(twice) -> 메인 페이지로
  */
 const ItemList = ({ day }: IEditor) => {
   const { register, setValue, handleSubmit, getValues } = useForm();
@@ -43,7 +44,7 @@ const ItemList = ({ day }: IEditor) => {
   const template = useRecoilValue<string | undefined>(resultTemplate);
   const [diary, setDiary] = useRecoilState<diaryContentType[]>(diaryContent);
   const [submitNums, setSubmitNums] = useState(0);
-
+  const navigate = useNavigate();
   const onPlusClick = () => {
     setItemId((prev) => prev + 1);
     setStyle([...style, { textSize: "text-base", textColor: "", textBg: "" }]);
@@ -96,8 +97,12 @@ const ItemList = ({ day }: IEditor) => {
         template: template,
       };
       setDiary(copyDiary);
+      console.log(diary);
     }
-    if (submitNums > 1) setSubmitNums(0);
+    if (submitNums > 1) {
+      setSubmitNums(0);
+      navigate("/diary");
+    }
   };
   return (
     <form onSubmit={handleSubmit(onValid)} className="flex flex-col gap-2">
