@@ -1,9 +1,4 @@
-import { useRecoilValue } from "recoil";
-import { bgImage } from "../../../recoil/diary";
-import Divider from "../../common/Divider";
-import EditorHead from "./EditorHead";
 import ItemList from "./ItemList";
-import Title from "./Title";
 
 interface IEditor {
   day: string | undefined;
@@ -16,10 +11,7 @@ interface IEditor {
 const Editor = ({ day }: IEditor) => {
   return (
     <div className="gap-1 flex flex-col m-0 p-2">
-      <EditorHead day={day} />
-      <Title />
-      <Divider />
-      <ItemList />
+      <ItemList day={day} />
     </div>
   );
 };

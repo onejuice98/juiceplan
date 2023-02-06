@@ -52,8 +52,7 @@ const Template = ({ width, height }: ITemplate) => {
   }, [templateImg[0], width, height]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    setResultTemplate(canvas?.toDataURL());
+    setResultTemplate(canvasRef.current?.toDataURL());
   }, [isApply]);
   const drawing = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     const { offsetX, offsetY } = event.nativeEvent;

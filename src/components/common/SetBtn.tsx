@@ -93,10 +93,10 @@ const SetBtn = ({
             <GrayText>HighLight Text</GrayText>
             <Select onSelectChange={handleTextBgColor}>
               <option value=""> 기본 </option>
-              <option value="#FFFF00"> 노랑 </option>
-              <option value="#00FEFE"> 청록 </option>
-              <option value="#00FF00"> 녹색 </option>
-              <option value="#FF00FF"> 분홍 </option>
+              <option value="bg-[yellow]"> 노랑 </option>
+              <option value="bg-[blue]"> 청록 </option>
+              <option value="bg-[green]"> 녹색 </option>
+              <option value="bg-[pink]"> 분홍 </option>
             </Select>
           </div>
 

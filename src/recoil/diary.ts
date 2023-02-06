@@ -29,10 +29,10 @@ export type itemTextColorType =
 
 // 노랑, 청록색, 녹색, 분홍색
 export type itemTextBgColorType =
-  | "#FFFF00"
-  | "#00FEFE"
-  | "#00FF00"
-  | "#FF00FF"
+  | "bg-[yellow]"
+  | "bg-[blue]"
+  | "bg-[green]"
+  | "bg-[pink]"
   | ""
   | string;
 export type itemStyleType = {
