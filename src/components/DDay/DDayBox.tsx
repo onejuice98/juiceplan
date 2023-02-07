@@ -35,8 +35,8 @@ const DDayBox = ({ dDayName, date, isSetBtn, isFirst, isDelete }: IDDAYS) => {
 
   return (
     <>
-      <div className="flex justify-between w-full bg-gradient-to-r from-yellow-200 via-green-200 to-green-500 rounded-md shadow-md p-2 ">
-        <div className="flex flex-col">
+      <div className="flex justify-between w-full h-full bg-gradient-to-b from-rose-100 to-teal-100 rounded-md shadow-md p-2 ">
+        <div className="flex flex-col justify-between">
           <JuiceFont isBold others="mb-4">
             {isFirst === 0 && `⭐️ `}
 

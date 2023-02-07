@@ -1,19 +1,5 @@
 import { atom } from "recoil";
 
-export const canvasWidth = atom<number>({
-  key: "canvasWidth",
-  default: 0,
-});
-
-export const canvasHeight = atom<number>({
-  key: "canvasHeight",
-  default: 0,
-});
-
-export const leftContext = atom<CanvasRenderingContext2D>({
-  key: "leftContext",
-});
-
 // Editor types
 export type diaryItemType = {
   id: string;
@@ -134,22 +120,22 @@ export const itemStyle = atom<itemStyleType[]>({
 
 /**
  * 전체 다이어리의 대한 정보를 가진 상태
- * @default none
+ * @default
  */
 export const diaryContent = atom<diaryContentType[]>({
   key: "diaryContentState",
   default: [
     {
-      day: "2022-01-02",
-      title: "Recoil Default",
+      day: "2023-02-15",
+      title: "우리 루다 이쁘죠",
       content: [
         {
           id: "context0",
-          context: "",
+          context: "이쁘죠?",
           style: {
-            textSize: "text-base",
+            textSize: "text-lg",
             textColor: "",
-            textBg: "",
+            textBg: "bg-[yellow]",
           },
         },
       ],

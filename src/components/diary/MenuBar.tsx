@@ -2,6 +2,7 @@ import { RefObject, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { apply, bgImage, strokeColor, strokeWidth } from "../../recoil/diary";
+import BackSpace from "../common/BackSpace";
 
 /**
  * 뒤로가기 버튼, background Image을 넣을 input(type="file"), canvas 도구, template에 그린 것을 적용시킬 버튼
@@ -28,12 +29,7 @@ const MenuBar = () => {
   return (
     <div className="flex w-full h-16 p-2 gap-4 items-center">
       <div className="h-fit flex items-center justify-between">
-        <button
-          className="w-10 h-10 border-[1px] border-gray-400 rounded-md shadow-md hover:bg-gray-200 hover:rounded-md duration-500 text-lg"
-          onClick={() => history(-1)}
-        >
-          👈
-        </button>
+        <BackSpace />
       </div>
       <div>
         <input

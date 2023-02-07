@@ -97,7 +97,6 @@ const ItemList = ({ day }: IEditor) => {
         template: template,
       };
       setDiary(copyDiary);
-      console.log(diary);
     }
     if (submitNums > 1) {
       setSubmitNums(0);

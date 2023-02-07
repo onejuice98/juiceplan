@@ -4,11 +4,10 @@ import { useRecoilValue } from "recoil";
 import Editor from "../../components/diary/editor/Editor";
 import MenuBar from "../../components/diary/MenuBar";
 import Template from "../../components/diary/template/Template";
-import { apply, bgImage, resultTemplate } from "../../recoil/diary";
+import { apply, resultTemplate } from "../../recoil/diary";
 
 const DayDiary = () => {
   const { dayId } = useParams();
-  const templateImg = useRecoilValue<string>(bgImage);
   const isApply = useRecoilValue<boolean>(apply);
   const template = useRecoilValue<string | undefined>(resultTemplate);
   const divRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
