@@ -19,9 +19,11 @@ import {
   itemTextSizeType,
   resultTemplate,
 } from "../../../recoil/diary";
+import Button from "../../common/Button";
+import Container from "../../common/Container";
 import Divider from "../../common/Divider";
-import JuiceFont from "../../common/JuiceFont";
 import SetBtn from "../../common/SetBtn";
+import Text from "../../common/Text";
 
 interface IEditor {
   day: string | undefined; // yyyy-MM-dd
@@ -105,30 +107,36 @@ const ItemList = ({ day }: IEditor) => {
   };
   return (
     <form onSubmit={handleSubmit(onValid)} className="flex flex-col gap-2">
-      <div className="flex justify-between items-center">
-        <JuiceFont>{day}</JuiceFont>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setSubmitNums((prev) => prev + 1)}
+      <Container justifyContent="between" alignItems="center">
+        <Text mono>{day}</Text>
+        <Container className="gap-2">
+          <Button
             type="submit"
-            className="font-mono bg-emerald-400 p-1 rounded-md shadow-md text-white hover:bg-emerald-600 duration-300"
+            white
+            hover
+            bgColor="emerald"
+            w={12}
+            h={8}
+            onClick={() => setSubmitNums((prev) => prev + 1)}
           >
             {submitNums === 0 && "Save"}
             {submitNums === 1 && "한번더"}
-          </button>
-        </div>
-      </div>
-      <div className="flex gap-4 items-center">
-        <JuiceFont isBold isBig others="whitespace-nowrap">
+          </Button>
+        </Container>
+      </Container>
+
+      <Container alignItems="center" className="gap-4">
+        <Text mono bold size="lg" className="whitespace-nowrap">
           제목
-        </JuiceFont>
+        </Text>
         <div
           {...register("titleContent")}
           contentEditable={!disabled}
           onInput={(e) => setValue("titleContent", e.currentTarget.textContent)}
           className="p-2 font-bold text-lg border-none w-full rounded-md"
         />
-      </div>
+      </Container>
+
       <Divider />
       <Reorder.Group axis="y" values={items} onReorder={setItems}>
         <div>

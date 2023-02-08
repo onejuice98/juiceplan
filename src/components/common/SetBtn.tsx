@@ -8,8 +8,10 @@ import {
   itemTextSize,
   itemTextSizeType,
 } from "../../recoil/diary";
-import GrayText from "./GrayText";
+import Button from "./Button";
 import Select from "./Select";
+import SetSvg from "./SetSvg";
+import Text from "./Text";
 
 interface ISetBtn {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -45,34 +47,20 @@ const SetBtn = ({
   return (
     <>
       <button
-        data-collapse-toggle="navbar-sticky"
-        type="button"
         className={`inline-flex items-center p-2 text-sm rounded-lg focus:outline-none dark:text-gray-400 ${
           isHover && `dark:hover:bg-gray-700 hover:bg-gray-100`
         } ${isWeakGray ? `text-gray-400` : "text-gray-500"} ${others}`}
-        aria-controls="navbar-sticky"
-        aria-expanded="false"
         onMouseUp={() => setHover(true)}
         onClick={onClick}
       >
-        <svg
-          className="w-4 h-4"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          ></path>
-        </svg>
+        <SetSvg w={16} h={16} />
       </button>
       {isSettingBox && hover && (
         <div className="flex flex-col justify-between p-4 rounded-md w-48 h-72 bg-cyan-200 absolute translate-y-[45%] z-[999]">
           <div>
-            <GrayText>Text Size</GrayText>
+            <Text gray size="sm">
+              Text Size
+            </Text>
             <Select onSelectChange={handleTextSize}>
               <option value="text-base"> 적당히 </option>
               <option value="text-sm"> 작게 </option>
@@ -80,7 +68,9 @@ const SetBtn = ({
             </Select>
           </div>
           <div>
-            <GrayText>Text Color</GrayText>
+            <Text gray size="sm">
+              Text Color
+            </Text>
             <Select onSelectChange={handleTextColor}>
               <option value=""> 검정 </option>
               <option value="text-green-500"> 초롱 </option>
@@ -90,7 +80,9 @@ const SetBtn = ({
           </div>
 
           <div>
-            <GrayText>HighLight Text</GrayText>
+            <Text gray size="sm">
+              Highlight Text
+            </Text>
             <Select onSelectChange={handleTextBgColor}>
               <option value=""> 기본 </option>
               <option value="bg-[yellow]"> 노랑 </option>
@@ -101,19 +93,19 @@ const SetBtn = ({
           </div>
 
           <div className="flex justify-end gap-2">
-            <button
-              className="w-14 h-8 bg-red-500 hover:bg-red-700 text-white rounded-md shadow-md duration-300"
+            <Button
+              white
+              hover
+              w={14}
+              h={8}
+              bgColor="red"
               onClick={() => setHover(false)}
             >
               닫기
-            </button>
-            <button
-              className="w-14 h-8 bg-green-500 hover:bg-green-700 text-white rounded-md shadow-md duration-300"
-              onClick={onClick}
-            >
-              {" "}
-              적용{" "}
-            </button>
+            </Button>
+            <Button white hover w={14} h={8} bgColor="green" onClick={onClick}>
+              적용
+            </Button>
           </div>
         </div>
       )}

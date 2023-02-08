@@ -1,30 +1,37 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import BackSpace from "../../components/common/BackSpace";
-import GrayText from "../../components/common/GrayText";
+import Button from "../../components/common/Button";
+import Container from "../../components/common/Container";
+import Text from "../../components/common/Text";
 import Display from "../../components/diary/Display";
 import { diaryContent, diaryContentType } from "../../recoil/diary";
 
 const Diary = () => {
-  const [isPlusButton, setIsPlusButton] = useState(false);
+  const [isPlus, setIsPlus] = useState(false);
   const [date, setDate] = useState<string>("");
   const diary = useRecoilState<diaryContentType[]>(diaryContent);
   const navigate = useNavigate();
   return (
     <div className="flex flex-col w-full p-2 bg-gray-300/[0.3] gap-4">
-      <div className="flex justify-between">
+      <Container justifyContent="between" alignItems="center">
         <BackSpace isHome />
-        <button
+        <Button
+          white
+          hover
+          w={32}
+          h={12}
+          bgColor="sky"
+          weight="medium"
+          className="p-2"
           onClick={() => {
-            setIsPlusButton((prev) => !prev);
+            setIsPlus((prev) => !prev);
           }}
-          className="flex justify-center items-center w-12 h-12 rounded-full bg-gradient-to-r from-green-200 to-green-500  text-white text-xl"
         >
-          +
-        </button>
-      </div>
+          다이어리 쓰기
+        </Button>
+      </Container>
 
       <div className="flex w-full flex-col justify-center items-center gap-6 md:grid md:grid-cols-2">
         {diary[0].map((value) => (
@@ -39,22 +46,27 @@ const Diary = () => {
         ))}
       </div>
 
-      {isPlusButton && (
+      {isPlus && (
         <div className="fixed w-40 h-30 rounded-md bg-gray-400/[0.8] right-2 top-16">
           <form className="flex flex-col p-2 gap-2">
-            <GrayText> 날짜 입력 </GrayText>
+            <Text gray size="sm">
+              날짜 입력
+            </Text>
             <input
               type="date"
               required
               onChange={(event) => setDate(event.currentTarget.value)}
               className="border-none rounded-md shadow-sm h-6 w-full"
             />
-            <button
+            <Button
+              hover
+              w="full"
+              h={8}
+              bgColor="green"
               onClick={() => navigate(`/diary/${date}`)}
-              className="w-full h-8 bg-green-200 rounded-md shadow-md hover:bg-green-400"
             >
               생성
-            </button>
+            </Button>
           </form>
         </div>
       )}

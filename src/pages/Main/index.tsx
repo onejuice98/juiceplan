@@ -1,14 +1,20 @@
 import { useRecoilValue } from "recoil";
 import { useState } from "react";
 import { dDayListState, isErrorState, UserInput } from "../../recoil/dDay";
-import Toast from "../../components/common/Toast";
+import Toast from "./Toast";
 import DDayList from "../../components/dDay/DDayList";
 import Layout from "../../components/layout/Layout";
 import Profile from "../../components/profile/Profile";
 import DDayBox from "../../components/dDay/DDayBox";
 import SetBtn from "../../components/common/SetBtn";
 import DiaryCard from "../../components/diary/DiaryCard";
+import Container from "../../components/common/Container";
 
+/**
+ * Main page "/" 가 되며, Layout은 header, content, footer 로 구성됨. (반응형 웹페이지)
+ * diary page로 이동 가능
+ * @returns Main Page, 프로필 D-day 표기, Diary 의 요약 Card를 표기
+ */
 const Main = () => {
   const [open, setOpen] = useState(false);
   const dDayUserInputList = useRecoilValue<UserInput[]>(dDayListState);
@@ -20,22 +26,22 @@ const Main = () => {
       {isError && <Toast />}
       {open && <DDayList modalClose={handleModal} />}
       <Layout>
-        <div className="flex flex-col h-full">
+        <Container direction="col" justifyContent="center">
           <div className="w-full grid grid-cols-2 p-2 my-2 gap-2">
             <Profile />
-            <div className="flex w-full justify-between gap-2">
+            <Container justifyContent="between">
               <DDayBox
                 dDayName={dDayUserInputList[0].dDayName}
                 date={dDayUserInputList[0].date}
               />
               <SetBtn onClick={handleModal} isHover />
-            </div>
+            </Container>
           </div>
 
-          <div className="flex flex-col p-8 bg-gray-500/[0.1] ">
+          <Container direction="col" className="p-8 bg-gray-500/[0.1]">
             <DiaryCard />
-          </div>
-        </div>
+          </Container>
+        </Container>
       </Layout>
     </>
   );

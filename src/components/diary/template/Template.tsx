@@ -66,17 +66,15 @@ const Template = ({ width, height }: ITemplate) => {
   };
 
   return (
-    <div>
-      <canvas
-        ref={canvasRef}
-        width={width}
-        height={height}
-        onMouseMove={drawing}
-        onMouseDown={() => SetIsDrawing(true)}
-        onMouseUp={() => SetIsDrawing(false)}
-        onMouseLeave={() => SetIsDrawing(false)}
-      ></canvas>
-    </div>
+    <canvas
+      ref={canvasRef}
+      width={width}
+      height={height}
+      onMouseMove={drawing}
+      onMouseDown={() => SetIsDrawing(true)}
+      onMouseUp={() => SetIsDrawing(false)}
+      onMouseLeave={() => SetIsDrawing(false)}
+    />
   );
 };
 

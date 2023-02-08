@@ -1,15 +1,16 @@
 import { RefObject, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { apply, bgImage, strokeColor, strokeWidth } from "../../recoil/diary";
 import BackSpace from "../common/BackSpace";
+import Button from "../common/Button";
+import Container from "../common/Container";
+import Text from "../common/Text";
 
 /**
  * 뒤로가기 버튼, background Image을 넣을 input(type="file"), canvas 도구, template에 그린 것을 적용시킬 버튼
  * @returns DayDiary page의 상단메뉴
  */
 const MenuBar = () => {
-  const history = useNavigate();
   const setBgImages = useSetRecoilState<string>(bgImage);
   const [isApply, setIsApply] = useRecoilState<boolean>(apply);
   const [stroke, setStroke] = useRecoilState<number>(strokeWidth);
@@ -28,9 +29,8 @@ const MenuBar = () => {
 
   return (
     <div className="flex w-full h-16 p-2 gap-4 items-center">
-      <div className="h-fit flex items-center justify-between">
-        <BackSpace />
-      </div>
+      <BackSpace />
+
       <div>
         <input
           className="p-1 block shadow-md w-full text-sm text-gray-700 border rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -39,14 +39,14 @@ const MenuBar = () => {
           ref={imgRef}
           type="file"
         />
-        <p className="px-1 text-sm text-gray-500 dark:text-gray-300">
+        <Text gray size="sm" className="px-1">
           PNG, JPEG or GIF
-        </p>
+        </Text>
       </div>
-      <div>
-        <div className="text-gray-500 text-sm dark:text-gray-300">
+      <Container direction="col" className="gap-2">
+        <Text gray size="sm">
           Line Width : {stroke}
-        </div>
+        </Text>
         <input
           type="range"
           min="1"
@@ -56,11 +56,12 @@ const MenuBar = () => {
           step="0.5"
           className="w-36 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
         />
-      </div>
+      </Container>
+
       <div>
-        <div className="text-gray-500 text-sm dark:text-gray-300">
-          Line Color
-        </div>
+        <Text gray size="sm">
+          Color
+        </Text>
         <input
           type="color"
           value={color}
@@ -68,12 +69,16 @@ const MenuBar = () => {
           className="w-full h-6 cursor-pointer"
         />
       </div>
-      <button
-        className="w-24 h-12 bg-emerald-500 p-2 rounded-md shadow-md text-white hover:bg-emerald-700 duration-300"
+      <Button
+        white
+        hover
+        w={24}
+        h={12}
+        bgColor="emerald"
         onClick={() => setIsApply((prev) => !prev)}
       >
         {isApply ? "Reset" : "적용하기"}
-      </button>
+      </Button>
     </div>
   );
 };

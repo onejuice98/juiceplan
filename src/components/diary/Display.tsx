@@ -3,6 +3,8 @@ import { diaryItemType } from "../../recoil/diary";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import { RefObject, useRef } from "react";
+import Container from "../common/Container";
+import Text from "../common/Text";
 interface IDisplay {
   template?: string;
   title: string;
@@ -32,6 +34,7 @@ const Display = ({ template, title, day, content }: IDisplay) => {
       saveAs(blob, `${day}_${title}`);
     });
   };
+  console.log(template);
   return (
     <motion.div
       ref={diaryRef}
@@ -40,19 +43,24 @@ const Display = ({ template, title, day, content }: IDisplay) => {
       initial="normal"
       onClick={onDownload}
       className={`${
-        template === "" && "bg-white"
+        template!.length < 10 && "bg-white"
       } w-[calc(75vw)] md:w-[calc(48vw)] h-[calc(80vh)] flex flex-col rounded-md shadow-lg `}
     >
       <img
         src={template}
+        alt={`${process.env.PUBLIC_URL}/public_assets/noImg.png`}
         className={`${
-          template === "" && "hidden"
+          template!.length < 10 && "hidden"
         } absolute flex overflow-hidden z-[-1] w-[inherit] h-[inherit] rounded-md `}
       />
-      <div className="flex justify-between p-2">
-        <div className="text-2xl font-bold">{title}</div>
-        <div className="text-2xl font-bold">{day}</div>
-      </div>
+      <Container justifyContent="between" className="p-2">
+        <Text bold size="2xl">
+          {title}
+        </Text>
+        <Text bold size="2xl">
+          {day}
+        </Text>
+      </Container>
 
       <div className="p-2">
         {content.map((context) => (

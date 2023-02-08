@@ -6,6 +6,7 @@ import {
   isErrorState,
   UserInput,
 } from "../../recoil/dDay";
+import Button from "../common/Button";
 
 const DayInput = () => {
   const setIsError = useSetRecoilState<boolean>(isErrorState);
@@ -57,12 +58,9 @@ const DayInput = () => {
             required
             className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs before:content-[attr(data-placeholder)] before:w-full focus:before:hidden valid:before:hidden"
           />
-          <button
-            type="submit"
-            className="w-[10%] bg-sky-500 text-white rounded-md font-mono text-sm shadow-md hover:bg-sky-700"
-          >
+          <Button white hover w={12} bgColor="sky">
             +
-          </button>
+          </Button>
         </form>
       </div>
     </>

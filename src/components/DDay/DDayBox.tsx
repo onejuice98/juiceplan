@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
-import JuiceFont from "../common/JuiceFont";
-import SetBtn from "../common/SetBtn";
-import Tooltip from "../common/Tooltip";
+import Container from "../common/Container";
+import Text from "../common/Text";
+import Tooltip from "./Tooltip";
 
 interface IDDAYS {
   dDayName: string;
   date: string;
-  isSetBtn?: boolean;
   isFirst?: number;
   isDelete?: () => void;
 }
 
-const DDayBox = ({ dDayName, date, isSetBtn, isFirst, isDelete }: IDDAYS) => {
+/**
+ * Main Page와 Modal 에서 표기를 위한 Componenet
+ * @param dDayName string, D-Day의 title
+ * @param date string, D-Day의 기준일
+ * @param isDelete ()=>void, onClick에 들어가며, D-Day 지우기 위함.
+ * @returns D-Day Component, D-day 이름, 날짜, D-day, 삭제버튼
+ */
+const DDayBox = ({ dDayName, date, isFirst, isDelete }: IDDAYS) => {
   // 오늘을 표기하기 위한 today
   const today = new Date();
   // D-day 계산
@@ -23,6 +29,7 @@ const DDayBox = ({ dDayName, date, isSetBtn, isFirst, isDelete }: IDDAYS) => {
     setDays(Math.ceil(gapNum / (1000 * 60 * 60 * 24)));
   }, [date]);
 
+  // 주말 계산 로직
   const weeks = Math.floor(days / 7);
   const lastWeekDays = days % 7;
   const lastWeek = [];
@@ -35,34 +42,20 @@ const DDayBox = ({ dDayName, date, isSetBtn, isFirst, isDelete }: IDDAYS) => {
 
   return (
     <>
-      <div className="flex justify-between w-full h-full bg-gradient-to-b from-rose-100 to-teal-100 rounded-md shadow-md p-2 ">
-        <div className="flex flex-col justify-between">
-          <JuiceFont isBold others="mb-4">
+      <div className="flex justify-between w-full h-full bg-gradient-to-b from-rose-100 to-teal-100 rounded-md shadow-md p-2">
+        <Container direction="col" justifyContent="between">
+          <Text bold mono>
             {isFirst === 0 && `⭐️ `}
-
             {dDayName}
-          </JuiceFont>
+          </Text>
+
           <Tooltip message={`주말 : ${weekend} 평일 : ${days - weekend}`}>
-            <JuiceFont
-              isBold
-              isSmall
-              others="w-fit cursor-pointer text-xs text-gray-700 "
-            >
+            <Text bold gray mono size="xs" pointer>
               {date} D{days > 0 ? days * -1 : `+${days * -1}`}
-            </JuiceFont>
+            </Text>
           </Tooltip>
-        </div>
-        {isSetBtn && (
-          <div className="flex flex-col justify-around">
-            <SetBtn />
-            <button
-              className="hover:bg-gray-100/[0.5] hover:rounded-lg duration-500"
-              onClick={isDelete}
-            >
-              ❌
-            </button>
-          </div>
-        )}
+        </Container>
+        {isDelete && <button onClick={isDelete}>❌</button>}
       </div>
     </>
   );

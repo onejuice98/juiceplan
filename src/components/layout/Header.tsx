@@ -1,26 +1,39 @@
 import { Link } from "react-router-dom";
-import JuiceFont from "../common/JuiceFont";
+import Container from "../common/Container";
+import Text from "../common/Text";
 
+/**
+ * Main page의 header Nav tag
+ * @returns Header Nav Component(Logo & Menu)
+ */
 const Header = () => {
   return (
-    <div className="block z-[9] relative h-12">
-      <div className="fixed w-full justify-between flex px-2 py-4 bg-white border-b">
-        <div className="flex">
-          <JuiceFont isBold> JUICE </JuiceFont>
-          <JuiceFont others="text-gray-500"> Planner </JuiceFont>
-        </div>
-        <div className="flex gap-8">
+    <nav className="z-10 relative h-10">
+      <Container
+        justifyContent="between"
+        className="fixed w-full p-2 py-2 bg-white border-b"
+      >
+        <Container>
+          <Text bold mono>
+            JUICE
+          </Text>
+          <Text mono gray>
+            Planner
+          </Text>
+        </Container>
+
+        <Container className="gap-8">
           <Link to="/diary">
-            <JuiceFont isBold others="hover:underline cursor-pointer">
+            <Text bold mono pointer className="hover:underline">
               Diary
-            </JuiceFont>
+            </Text>
           </Link>
-          <JuiceFont isBold others="underline hover:underline cursor-pointer">
+          <Text bold mono pointer className="underline hover:underline">
             Profile
-          </JuiceFont>
-        </div>
-      </div>
-    </div>
+          </Text>
+        </Container>
+      </Container>
+    </nav>
   );
 };
 

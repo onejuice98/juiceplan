@@ -35,6 +35,7 @@ const DayDiary = () => {
         <div className="w-[calc(50vw-1px)] h-[calc(100vh-64px)]">
           <img
             src={template}
+            alt={`${process.env.PUBLIC_URL}/public_assets/noImg.png`}
             className={`${
               !isApply && "hidden"
             } flex justify-center items-center absolute overflow-hidden z-[-1] w-[inherit] h-[inherit]`}
