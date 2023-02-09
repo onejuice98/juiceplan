@@ -1,11 +1,16 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import BgImg from "../../components/diary/BgImg";
 import Editor from "../../components/diary/editor/Editor";
 import MenuBar from "../../components/diary/MenuBar";
 import Template from "../../components/diary/template/Template";
 import { apply, resultTemplate } from "../../recoil/diary";
 
+/**
+ * Editor와 Template를 조작하며 Diary 작성할 수 있는 Page이다.
+ * @returns Editor Page로 Editor, Template를 출력한다.
+ */
 const DayDiary = () => {
   const { dayId } = useParams();
   const isApply = useRecoilValue<boolean>(apply);
@@ -33,13 +38,7 @@ const DayDiary = () => {
           <Template width={templateWidth} height={templateHeight} />
         </div>
         <div className="w-[calc(50vw-1px)] h-[calc(100vh-64px)]">
-          <img
-            src={template}
-            alt={`${process.env.PUBLIC_URL}/public_assets/noImg.png`}
-            className={`${
-              !isApply && "hidden"
-            } flex justify-center items-center absolute overflow-hidden z-[-1] w-[inherit] h-[inherit]`}
-          />
+          {isApply && <BgImg absolute z src={template} />}
           <Editor day={dayId} />
         </div>
       </div>

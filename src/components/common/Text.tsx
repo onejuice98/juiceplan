@@ -2,10 +2,21 @@ interface TextType extends React.ComponentProps<"span"> {
   children: React.ReactNode;
   bold?: boolean;
   gray?: boolean;
-  size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl";
+  size?: "xs" | "sm" | "base" | "lg" | "xl" | "xl2";
   pointer?: boolean;
   mono?: boolean;
 }
+type textSizeType = {
+  [key: string]: string;
+};
+const textSize: textSizeType = {
+  xs: "text-xs",
+  sm: "text-sm",
+  base: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  xl2: "text-2xl",
+};
 /**
  * 일반적인 Text, extends <span> tag
  * @param children React.ReactNode
@@ -21,7 +32,7 @@ const Text = ({
   children,
   bold,
   gray,
-  size,
+  size = "base",
   pointer,
   mono,
   className,
@@ -29,11 +40,9 @@ const Text = ({
 }: TextType) => {
   return (
     <span
-      className={`${bold && `font-bold`} ${
-        gray && `text-gray-500`
-      } text-${size} ${pointer && `cursor-pointer`} ${
-        mono && `font-mono`
-      } ${className}`}
+      className={`${bold && `font-bold`} ${gray && `text-gray-500`} ${
+        textSize[size ?? "base"]
+      } ${pointer && `cursor-pointer`} ${mono && `font-mono`} ${className}`}
       {...rest}
     >
       {children}

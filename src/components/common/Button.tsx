@@ -1,12 +1,18 @@
 interface ButtonType extends React.ComponentProps<"button"> {
-  w?: number | "full";
-  h?: number;
   white?: boolean;
-  bgColor?: "red" | "green" | "sky" | "emerald" | "green";
+  bgColor: "red" | "green" | "sky" | "emerald";
   weight?: "medium";
   hover?: boolean;
 }
-
+type buttonBgColorType = {
+  [key: string]: string;
+};
+const buttonBgColor: buttonBgColorType = {
+  red: "bg-red-500",
+  green: "bg-green-500",
+  sky: "bg-sky-500",
+  emerald: "bg-emerald-500",
+};
 /**
  * rounded & shadow medium default + hover -> 배경색이 짙어지는 효과 를 가진 통상적인 button
  * @param w number | full | undefined // pixel or full
@@ -19,8 +25,6 @@ interface ButtonType extends React.ComponentProps<"button"> {
  * @returns Button Componenet rounded & shadow default
  */
 const Button = ({
-  w,
-  h,
   white,
   bgColor,
   weight,
@@ -30,10 +34,10 @@ const Button = ({
 }: ButtonType) => {
   return (
     <button
-      className={`w-${w} h-${h} bg-${bgColor}-500 ${
+      className={`${buttonBgColor[bgColor]} ${
         white && "text-white"
       } font-[${weight}] ${
-        hover && `hover:bg-${bgColor}-700`
+        hover && `hover:${buttonBgColor[bgColor]}`
       } font-mono rounded-md shadow-md ${className}`}
       {...rest}
     ></button>

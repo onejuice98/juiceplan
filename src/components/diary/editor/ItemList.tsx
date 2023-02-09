@@ -115,9 +115,8 @@ const ItemList = ({ day }: IEditor) => {
             white
             hover
             bgColor="emerald"
-            w={12}
-            h={8}
             onClick={() => setSubmitNums((prev) => prev + 1)}
+            className="w-12 h-8"
           >
             {submitNums === 0 && "Save"}
             {submitNums === 1 && "한번더"}
@@ -162,7 +161,6 @@ const ItemList = ({ day }: IEditor) => {
                   +
                 </button>
                 <SetBtn
-                  isWeakGray
                   isSettingBox
                   onClick={() => onSettingClick(index)}
                   others="relative opacity-0 group-hover:opacity-100 hover:opacity-100 hover:bg-gray-200 duration-500"

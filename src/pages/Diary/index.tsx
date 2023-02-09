@@ -8,23 +8,25 @@ import Text from "../../components/common/Text";
 import Display from "../../components/diary/Display";
 import { diaryContent, diaryContentType } from "../../recoil/diary";
 
+/**
+ * Diary Main page로 반응형으로 되어있으며, 각종 diary 추가 및 자세한 diary로 이동 가능하다.
+ * @returns Diary Main page, Diary 추가 기능, Main 이동기능, Display Diary 이동 기능, Diary list 출력 한다.
+ */
 const Diary = () => {
   const [isPlus, setIsPlus] = useState(false);
   const [date, setDate] = useState<string>("");
   const diary = useRecoilState<diaryContentType[]>(diaryContent);
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col w-full p-2 bg-gray-300/[0.3] gap-4">
+    <div className="flex flex-col p-2 bg-gray-300/[0.3] gap-4">
       <Container justifyContent="between" alignItems="center">
         <BackSpace isHome />
         <Button
           white
           hover
-          w={32}
-          h={12}
           bgColor="sky"
           weight="medium"
-          className="p-2"
+          className="w-32 h-12 p-2"
           onClick={() => {
             setIsPlus((prev) => !prev);
           }}
@@ -33,7 +35,13 @@ const Diary = () => {
         </Button>
       </Container>
 
-      <div className="flex w-full flex-col justify-center items-center gap-6 md:grid md:grid-cols-2">
+      <Container
+        direction="col"
+        justifyContent="center"
+        alignItems="center"
+        mdGrid
+        className="w-full gap-6"
+      >
         {diary[0].map((value) => (
           <Link key={value.day} to={`/diary/display/${value.day}`}>
             <Display
@@ -44,7 +52,7 @@ const Diary = () => {
             />
           </Link>
         ))}
-      </div>
+      </Container>
 
       {isPlus && (
         <div className="fixed w-40 h-30 rounded-md bg-gray-400/[0.8] right-2 top-16">
@@ -60,9 +68,8 @@ const Diary = () => {
             />
             <Button
               hover
-              w="full"
-              h={8}
               bgColor="green"
+              className="w-full h-8"
               onClick={() => navigate(`/diary/${date}`)}
             >
               생성

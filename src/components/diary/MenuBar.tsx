@@ -26,9 +26,8 @@ const MenuBar = () => {
       if (typeof reader.result === "string") setBgImages(reader.result);
     };
   };
-
   return (
-    <div className="flex w-full h-16 p-2 gap-4 items-center">
+    <Container alignItems="center" className="p-2 gap-4 h-16">
       <BackSpace />
 
       <div>
@@ -72,14 +71,13 @@ const MenuBar = () => {
       <Button
         white
         hover
-        w={24}
-        h={12}
         bgColor="emerald"
+        className="w-24 h-12"
         onClick={() => setIsApply((prev) => !prev)}
       >
         {isApply ? "Reset" : "적용하기"}
       </Button>
-    </div>
+    </Container>
   );
 };
 

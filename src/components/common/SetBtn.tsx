@@ -16,17 +16,18 @@ import Text from "./Text";
 interface ISetBtn {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   isHover?: boolean;
-  isWeakGray?: boolean;
   others?: string;
   isSettingBox?: boolean;
 }
-const SetBtn = ({
-  onClick,
-  isHover,
-  isWeakGray,
-  others,
-  isSettingBox,
-}: ISetBtn) => {
+/**
+ * Main Page, Diary Editor에서 사용되며, onClick 추가 할 수 있으며, editor의 content style을 제어할 수 있다.
+ * @param onClick React.MouseEventHandler<HTMLButtonElement> // onClick Event 제어 가능
+ * @param isHover boolean | undefined // hover CSS 추가기능
+ * @param others string | undefined // className 으로 CSS 추가 설정 가능
+ * @param isSettingBox boolean | undefiend // Editor에서 사용하며, 유무에 따라 설정 창이 뜬다.
+ * @returns Setting Button Svg를 포함하는 Component
+ */
+const SetBtn = ({ onClick, isHover, others, isSettingBox }: ISetBtn) => {
   const [hover, setHover] = useState(false);
   const setTextSize = useSetRecoilState<itemTextSizeType>(itemTextSize);
   const setTextColor = useSetRecoilState<itemTextColorType>(itemTextColor);
@@ -47,9 +48,9 @@ const SetBtn = ({
   return (
     <>
       <button
-        className={`inline-flex items-center p-2 text-sm rounded-lg focus:outline-none dark:text-gray-400 ${
-          isHover && `dark:hover:bg-gray-700 hover:bg-gray-100`
-        } ${isWeakGray ? `text-gray-400` : "text-gray-500"} ${others}`}
+        className={`inline-flex items-center p-2 text-sm rounded-lg focus:outline-none ${
+          isHover && `hover:bg-gray-100`
+        } text-gray-500 ${others}`}
         onMouseUp={() => setHover(true)}
         onClick={onClick}
       >
@@ -96,14 +97,19 @@ const SetBtn = ({
             <Button
               white
               hover
-              w={14}
-              h={8}
               bgColor="red"
+              className="w-14 h-8"
               onClick={() => setHover(false)}
             >
               닫기
             </Button>
-            <Button white hover w={14} h={8} bgColor="green" onClick={onClick}>
+            <Button
+              white
+              hover
+              bgColor="green"
+              className="w-14 h-8"
+              onClick={onClick}
+            >
               적용
             </Button>
           </div>

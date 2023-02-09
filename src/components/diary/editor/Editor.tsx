@@ -1,3 +1,4 @@
+import Container from "../../common/Container";
 import ItemList from "./ItemList";
 
 interface IEditor {
@@ -10,9 +11,9 @@ interface IEditor {
  */
 const Editor = ({ day }: IEditor) => {
   return (
-    <div className="gap-1 flex flex-col m-0 p-2">
+    <Container direction="col" className="gap-1 p-2">
       <ItemList day={day} />
-    </div>
+    </Container>
   );
 };
 
