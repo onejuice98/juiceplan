@@ -24,7 +24,7 @@ const DDayBox = ({ dDayName, date, isFirst, isDelete }: IDDAYS) => {
   const [days, setDays] = useState<number>(0);
   useEffect(() => {
     const today = new Date();
-    const dDay = new Date(`${date} 00:00:00`);
+    const dDay = new Date(`${date}T00:00:00`);
     const gapNum = dDay.getTime() - today.getTime();
     setDays(Math.ceil(gapNum / (1000 * 60 * 60 * 24)));
   }, [date]);

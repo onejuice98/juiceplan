@@ -38,26 +38,26 @@ const MenuBar = () => {
           ref={imgRef}
           type="file"
         />
-        <Text gray size="sm" className="px-1">
+        <Text gray className="sm:text-xs text-sm px-1">
           PNG, JPEG or GIF
         </Text>
       </div>
-      <Container direction="col" className="gap-2">
+      <Container direction="col" className="gap-2 max-[450px]:hidden">
         <Text gray size="sm">
-          Line Width : {stroke}
+          Width : {stroke}
         </Text>
         <input
           type="range"
           min="1"
-          max="20"
+          max="10"
           value={stroke}
           onChange={(event) => setStroke(event.currentTarget.valueAsNumber)}
           step="0.5"
-          className="w-36 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+          className="w-12 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
         />
       </Container>
 
-      <div>
+      <div className="max-[450px]:hidden">
         <Text gray size="sm">
           Color
         </Text>

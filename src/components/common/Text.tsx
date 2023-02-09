@@ -40,9 +40,11 @@ const Text = ({
 }: TextType) => {
   return (
     <span
-      className={`${bold && `font-bold`} ${gray && `text-gray-500`} ${
-        textSize[size ?? "base"]
-      } ${pointer && `cursor-pointer`} ${mono && `font-mono`} ${className}`}
+      className={`${className} ${bold && `font-bold`} ${
+        gray && `text-gray-500`
+      } ${textSize[size ?? "base"]} ${pointer && `cursor-pointer`} ${
+        mono && `font-mono`
+      }`}
       {...rest}
     >
       {children}

@@ -56,10 +56,10 @@ const Display = ({ template, title, day, content }: IDisplay) => {
       <BgImg absolute z src={template} />
 
       <Container justifyContent="between" className="p-2">
-        <Text bold size="xl2">
+        <Text bold className="sm:text-base md:text-2xl">
           {title}
         </Text>
-        <Text bold size="xl2">
+        <Text bold className="sm:text-base md:text-2xl">
           {day}
         </Text>
       </Container>
