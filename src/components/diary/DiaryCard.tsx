@@ -45,7 +45,7 @@ const DiaryCard = () => {
                 )
             )}
 
-            <Link to={`/diary/display/${value.day}`}>
+            <Link to={`/juiceplan/diary/display/${value.day}`}>
               <Text mono bold size="sm">
                 자세히
               </Text>
