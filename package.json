@@ -12,17 +12,19 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "assert": "^2.0.0",
-    "axios": "^1.2.2",
     "buffer": "^6.0.3",
+    "date-fns": "^2.29.3",
+    "dom-to-image": "^2.6.0",
+    "file-saver": "^2.0.5",
     "framer-motion": "^8.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.0",
+    "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
-    "react-xml-parser": "^1.1.8",
     "recoil": "^0.7.6",
     "typescript": "^4.9.4",
-    "web-vitals": "^2.1.4",
-    "xml-js": "^1.6.11"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,6 +53,8 @@
     ]
   },
   "devDependencies": {
+    "@types/dom-to-image": "^2.6.4",
+    "@types/file-saver": "^2.0.5",
     "autoprefixer": "^10.4.13",
     "gh-pages": "^4.0.0",
     "postcss": "^8.4.21",

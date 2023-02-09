@@ -6,7 +6,13 @@ import {
   isErrorState,
   UserInput,
 } from "../../recoil/dDay";
+import Button from "../common/Button";
+import DateInput from "./DateInput";
 
+/**
+ * D-Day List Page의 상단부 D-Day 입력을 위한 Component 이다. 이름 및 날짜를 추가할 수 있다.
+ * @returns D-Day Input Component 2개의 input tag(이름, 날짜) submit을 위한 버튼
+ */
 const DayInput = () => {
   const setIsError = useSetRecoilState<boolean>(isErrorState);
   const [userInputs, setUserInputs] =
@@ -18,7 +24,6 @@ const DayInput = () => {
       ...userInputs,
       [event.currentTarget.name]: event.currentTarget.value,
     });
-    console.log(userInputs);
   };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,38 +40,36 @@ const DayInput = () => {
     event.currentTarget.reset();
   };
   return (
-    <>
-      <div className="">
-        <form
-          name="isSubmit"
-          onSubmit={handleSubmit}
-          className="flex justify-between"
-        >
-          <input
-            name="dDayName"
-            type="text"
-            placeholder="D-day 이름"
-            onChange={handleChange}
-            required
-            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs"
-          />
-          <input
-            name="date"
-            type="date"
-            onChange={handleChange}
-            data-placeholder="날짜 선택"
-            required
-            className="w-[40%] rounded-md shadow-md focus:ring-blue-200 hover:animate-pulse text-xs before:content-[attr(data-placeholder)] before:w-full focus:before:hidden valid:before:hidden"
-          />
-          <button
-            type="submit"
-            className="w-[10%] bg-sky-500 text-white rounded-md font-mono text-sm shadow-md hover:bg-sky-700"
-          >
-            +
-          </button>
-        </form>
-      </div>
-    </>
+    <div>
+      <form
+        name="isSubmit"
+        onSubmit={handleSubmit}
+        className="flex justify-between gap-1"
+      >
+        <DateInput
+          name="dDayName"
+          type="text"
+          placeholder="D-DAY 이름"
+          onChange={handleChange}
+          required
+          w={36}
+          textSize="xs"
+        />
+        <DateInput
+          name="date"
+          type="date"
+          onChange={handleChange}
+          data-placeholder="날짜 선택"
+          required
+          w={36}
+          textSize="xs"
+          className="before:content-[attr(data-placeholder)] before:w-full valid:before:hidden"
+        />
+        <Button white hover bgColor="sky" className="w-36">
+          +
+        </Button>
+      </form>
+    </div>
   );
 };
 export default DayInput;

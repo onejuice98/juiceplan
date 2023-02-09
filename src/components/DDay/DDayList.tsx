@@ -1,14 +1,20 @@
-import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { dDayListState, UserInput } from "../../recoil/dDay";
 import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
 import Divider from "../common/Divider";
 import DDayInput from "./DDayInput";
 import DDayBox from "./DDayBox";
+import Container from "../common/Container";
+import Button from "../common/Button";
 
 interface ISetDday {
   modalClose: () => void;
 }
+/**
+ * Modal 형식으로 보여지고, 사용자가 Date 입력하여 추가 삭제 가능하며, Drag & drop 으로 최상단으로 올려 Main page에 표기되는 D-day 설정 가능하다.
+ * @param modalClose ()=>void // Modal 닫기 버튼 onClick
+ * @returns modal Componenet, D-dayList로 추가 및 제거 가능
+ */
 const SetDday = ({ modalClose }: ISetDday) => {
   const [dDayList, setdDayList] = useRecoilState<UserInput[]>(dDayListState);
   const dragControls = useDragControls();
@@ -18,10 +24,10 @@ const SetDday = ({ modalClose }: ISetDday) => {
       setdDayList(dDayList.filter((item) => item.dDayName !== name));
   };
   return (
-    <div className="z-10 fixed top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75]">
-      <div className="h-full flex justify-center py-12">
-        <div className="w-[80%] h-fit z-10 bg-white opacity-1 rounded-lg flex flex-col justify-between">
-          <div className="flex flex-col mt-4 mx-4 gap-3">
+    <div className="z-20 fixed top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75]">
+      <Container justifyContent="center" className="py-12">
+        <Container direction="col" className="z-10 h-fit bg-white rounded-lg">
+          <Container direction="col" className="m-4 gap-3">
             <DDayInput />
             <Divider />
 
@@ -30,7 +36,7 @@ const SetDday = ({ modalClose }: ISetDday) => {
                 axis="y"
                 values={dDayList}
                 onReorder={setdDayList}
-                className="h-full flex flex-col gap-5 last:mb-4"
+                className="h-full flex flex-col gap-5"
               >
                 {dDayList.map((value, idx) => (
                   <Reorder.Item
@@ -47,7 +53,6 @@ const SetDday = ({ modalClose }: ISetDday) => {
                     <DDayBox
                       dDayName={value.dDayName}
                       date={value.date}
-                      isSetBtn
                       isFirst={idx}
                       isDelete={() => deleteItem(value.dDayName)}
                     />
@@ -55,18 +60,26 @@ const SetDday = ({ modalClose }: ISetDday) => {
                 ))}
               </Reorder.Group>
             </AnimatePresence>
-          </div>
+          </Container>
 
-          <div className="flex justify-end items-end bg-gray-100 rounded-b-lg">
-            <button
-              className="w-20 h-10 bg-red-500 text-white rounded-md shadow-lg m-4 font-mono font-medium hover:bg-red-700"
+          <Container
+            justifyContent="end"
+            alignItems="end"
+            className="bg-gray-100 rounded-b-lg"
+          >
+            <Button
+              white
+              hover
+              bgColor="red"
+              weight="medium"
+              className="w-20 h-10 m-4"
               onClick={modalClose}
             >
               나가기
-            </button>
-          </div>
-        </div>
-      </div>
+            </Button>
+          </Container>
+        </Container>
+      </Container>
     </div>
   );
 };
