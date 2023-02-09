@@ -102,7 +102,7 @@ const ItemList = ({ day }: IEditor) => {
     }
     if (submitNums > 1) {
       setSubmitNums(0);
-      navigate("/diary");
+      navigate("/juiceplan/diary");
     }
   };
   return (

@@ -6,10 +6,13 @@ import Main from "./pages/Main";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/diary" element={<Diary />} />
-      <Route path="/diary/:dayId" element={<DayDiary />} />
-      <Route path="/diary/display/:dayId" element={<DisplayDiary />} />
+      <Route path="/juiceplan" element={<Main />} />
+      <Route path="/juiceplan/diary" element={<Diary />} />
+      <Route path="/juiceplan/diary/:dayId" element={<DayDiary />} />
+      <Route
+        path="/juiceplan/diary/display/:dayId"
+        element={<DisplayDiary />}
+      />
     </Routes>
   );
 };

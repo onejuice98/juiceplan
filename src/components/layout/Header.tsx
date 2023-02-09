@@ -23,7 +23,7 @@ const Header = () => {
         </Container>
 
         <Container className="gap-8">
-          <Link to="/diary">
+          <Link to="/juiceplan/diary">
             <Text bold mono pointer className="hover:underline">
               Diary
             </Text>

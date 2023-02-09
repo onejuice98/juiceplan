@@ -43,7 +43,7 @@ const Diary = () => {
         className="w-full gap-6"
       >
         {diary[0].map((value) => (
-          <Link key={value.day} to={`/diary/display/${value.day}`}>
+          <Link key={value.day} to={`/juiceplan/diary/display/${value.day}`}>
             <Display
               day={value.day}
               title={value.title}
@@ -70,7 +70,7 @@ const Diary = () => {
               hover
               bgColor="green"
               className="w-full h-8"
-              onClick={() => navigate(`/diary/${date}`)}
+              onClick={() => navigate(`/juiceplan/diary/${date}`)}
             >
               생성
             </Button>
