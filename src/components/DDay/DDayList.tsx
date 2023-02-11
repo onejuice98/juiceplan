@@ -26,7 +26,10 @@ const SetDday = ({ modalClose }: ISetDday) => {
   return (
     <div className="z-20 fixed top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75]">
       <Container justifyContent="center" className="py-12">
-        <Container direction="col" className="z-10 h-fit bg-white rounded-lg">
+        <Container
+          direction="col"
+          className="w-4/5 z-10 h-fit bg-white rounded-lg"
+        >
           <Container direction="col" className="m-4 gap-3">
             <DDayInput />
             <Divider />

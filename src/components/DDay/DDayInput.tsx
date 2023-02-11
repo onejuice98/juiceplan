@@ -44,7 +44,7 @@ const DayInput = () => {
       <form
         name="isSubmit"
         onSubmit={handleSubmit}
-        className="flex justify-between gap-1"
+        className="grid grid-cols-[repeat(2,minmax(0,1fr))_24px] gap-1"
       >
         <DateInput
           name="dDayName"
@@ -52,7 +52,6 @@ const DayInput = () => {
           placeholder="D-DAY 이름"
           onChange={handleChange}
           required
-          w={36}
           textSize="xs"
         />
         <DateInput
@@ -61,11 +60,10 @@ const DayInput = () => {
           onChange={handleChange}
           data-placeholder="날짜 선택"
           required
-          w={36}
           textSize="xs"
           className="before:content-[attr(data-placeholder)] before:w-full valid:before:hidden"
         />
-        <Button white hover bgColor="sky" className="w-36">
+        <Button white hover bgColor="sky">
           +
         </Button>
       </form>
