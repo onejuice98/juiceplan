@@ -17,6 +17,7 @@ interface IDDAYS {
  * @param isDelete ()=>void, onClick에 들어가며, D-Day 지우기 위함.
  * @returns D-Day Component, D-day 이름, 날짜, D-day, 삭제버튼
  */
+
 const DDayBox = ({ dDayName, date, isFirst, isDelete }: IDDAYS) => {
   // 오늘을 표기하기 위한 today
   const today = new Date();

@@ -1,10 +1,10 @@
 import { atom } from "recoil";
 
 export interface UserInput {
-  dDayName: string;
+  dday: string;
   date: string;
+  days?: number;
 }
-
 /**
  * dDayListState 추가 및 배열 type 정의를 위해서 생성한 상태
  * @types UserInput
@@ -12,7 +12,7 @@ export interface UserInput {
  */
 export const dDayUserInputState = atom<UserInput>({
   key: "dDayUserInputState",
-  default: { dDayName: "", date: "" },
+  default: { dday: "", date: "", days: 0 },
 });
 
 /**
@@ -22,7 +22,7 @@ export const dDayUserInputState = atom<UserInput>({
  */
 export const dDayListState = atom<UserInput[]>({
   key: "dDayListState",
-  default: [{ dDayName: "누군가의 전역일", date: "2023-06-30" }],
+  default: [{ dday: "누군가의 전역일", date: "2023-06-30", days: 0 }],
 });
 
 /**

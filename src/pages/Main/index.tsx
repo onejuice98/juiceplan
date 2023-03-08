@@ -31,7 +31,7 @@ const Main = () => {
             <Profile />
             <Container justifyContent="between">
               <DDayBox
-                dDayName={dDayUserInputList[0].dDayName}
+                dDayName={dDayUserInputList[0].dday}
                 date={dDayUserInputList[0].date}
               />
               <SetBtn onClick={handleModal} isHover />

@@ -21,7 +21,7 @@ const SetDday = ({ modalClose }: ISetDday) => {
 
   const deleteItem = (name: string | undefined) => {
     dDayList.length !== 1 &&
-      setdDayList(dDayList.filter((item) => item.dDayName !== name));
+      setdDayList(dDayList.filter((item) => item.dday !== name));
   };
   return (
     <div className="z-20 fixed top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75]">
@@ -43,7 +43,7 @@ const SetDday = ({ modalClose }: ISetDday) => {
               >
                 {dDayList.map((value, idx) => (
                   <Reorder.Item
-                    key={value.dDayName}
+                    key={value.dday}
                     value={value}
                     dragControls={dragControls}
                     dragConstraints={{
@@ -54,10 +54,10 @@ const SetDday = ({ modalClose }: ISetDday) => {
                     }}
                   >
                     <DDayBox
-                      dDayName={value.dDayName}
+                      dDayName={value.dday}
                       date={value.date}
                       isFirst={idx}
-                      isDelete={() => deleteItem(value.dDayName)}
+                      isDelete={() => deleteItem(value.dday)}
                     />
                   </Reorder.Item>
                 ))}

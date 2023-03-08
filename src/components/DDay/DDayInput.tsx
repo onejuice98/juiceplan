@@ -1,11 +1,6 @@
 import React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-  dDayListState,
-  dDayUserInputState,
-  isErrorState,
-  UserInput,
-} from "../../recoil/dDay";
+import { dDayListState, isErrorState, UserInput } from "../../recoil/dDay";
 import Button from "../common/Button";
 import DateInput from "./DateInput";
 
@@ -15,27 +10,21 @@ import DateInput from "./DateInput";
  */
 const DayInput = () => {
   const setIsError = useSetRecoilState<boolean>(isErrorState);
-  const [userInputs, setUserInputs] =
-    useRecoilState<UserInput>(dDayUserInputState);
   const [list, setList] = useRecoilState<UserInput[]>(dDayListState);
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setUserInputs({
-      ...userInputs,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
-  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const name = event.currentTarget.dday.value;
+    const date = event.currentTarget.date.value;
     if (
-      userInputs.dDayName === "" ||
-      userInputs.date === "" ||
+      name === "" ||
+      date === "" ||
       list.length === 5 ||
-      list.map((item) => item.dDayName === userInputs.dDayName).includes(true)
+      list.map((item) => item.dday === name).includes(true)
     ) {
       return setIsError(true);
     } else {
-      setList([...list, userInputs]);
+      setList([...list, { dday: name, date: date }]);
     }
     event.currentTarget.reset();
   };
@@ -47,17 +36,15 @@ const DayInput = () => {
         className="grid grid-cols-[repeat(2,minmax(0,1fr))_24px] gap-1"
       >
         <DateInput
-          name="dDayName"
+          name="dday"
           type="text"
           placeholder="D-DAY 이름"
-          onChange={handleChange}
           required
           textSize="xs"
         />
         <DateInput
           name="date"
           type="date"
-          onChange={handleChange}
           data-placeholder="날짜 선택"
           required
           textSize="xs"
