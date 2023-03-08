@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { dDayListState, UserInput } from "../../recoil/dDay";
-import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
+import { AnimatePresence, Reorder } from "framer-motion";
 import Divider from "../common/Divider";
 import DDayInput from "./DDayInput";
 import DDayBox from "./DDayBox";
@@ -16,13 +16,14 @@ interface ISetDday {
  * @returns modal Componenet, D-dayList로 추가 및 제거 가능
  */
 const SetDday = ({ modalClose }: ISetDday) => {
-  const [dDayList, setdDayList] = useRecoilState<UserInput[]>(dDayListState);
-  const dragControls = useDragControls();
+  const [list, setList] = useRecoilState<UserInput[]>(dDayListState);
 
   const deleteItem = (name: string | undefined) => {
-    dDayList.length !== 1 &&
-      setdDayList(dDayList.filter((item) => item.dday !== name));
+    if (list.length !== 1) {
+      setList(list.filter((item) => item.dday !== name));
+    }
   };
+
   return (
     <div className="z-20 fixed top-0 left-0 w-[100vw] h-[100vh] bg-black/[0.75]">
       <Container justifyContent="center" className="py-12">
@@ -37,15 +38,14 @@ const SetDday = ({ modalClose }: ISetDday) => {
             <AnimatePresence>
               <Reorder.Group
                 axis="y"
-                values={dDayList}
-                onReorder={setdDayList}
+                values={list}
+                onReorder={setList}
                 className="h-full flex flex-col gap-5"
               >
-                {dDayList.map((value, idx) => (
+                {list.map((value, idx) => (
                   <Reorder.Item
                     key={value.dday}
                     value={value}
-                    dragControls={dragControls}
                     dragConstraints={{
                       top: -50,
                       bottom: 100,
