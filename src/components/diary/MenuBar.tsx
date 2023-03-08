@@ -27,7 +27,7 @@ const MenuBar = () => {
     };
   };
   return (
-    <Container alignItems="center" className="p-2 gap-4 h-16">
+    <Container alignItems="center" className="p-2 gap-4 h-16 border-b-2">
       <BackSpace />
 
       <div>
