@@ -1,20 +1,9 @@
-import { atom } from "recoil";
+import { atom, DefaultValue, selector } from "recoil";
 
 export interface UserInput {
   dday: string;
   date: string;
-  days?: number;
 }
-/**
- * dDayListState 추가 및 배열 type 정의를 위해서 생성한 상태
- * @types UserInput
- * @default { dDayName: "", date: "" }
- */
-export const dDayUserInputState = atom<UserInput>({
-  key: "dDayUserInputState",
-  default: { dday: "", date: "", days: 0 },
-});
-
 /**
  * DDayList 출력을 위한 상태 DDayInput 에서 최신화 및 추가 된다.
  * @types UserInput[]
@@ -22,7 +11,7 @@ export const dDayUserInputState = atom<UserInput>({
  */
 export const dDayListState = atom<UserInput[]>({
   key: "dDayListState",
-  default: [{ dday: "누군가의 전역일", date: "2023-06-30", days: 0 }],
+  default: [{ dday: "누군가의 전역일", date: "2023-06-30" }],
 });
 
 /**
