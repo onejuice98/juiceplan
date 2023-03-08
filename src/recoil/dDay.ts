@@ -1,4 +1,4 @@
-import { atom, DefaultValue, selector } from "recoil";
+import { atom } from "recoil";
 
 export interface UserInput {
   dday: string;
