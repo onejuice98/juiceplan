@@ -17,7 +17,7 @@ import Container from "../../components/common/Container";
  */
 const Main = () => {
   const [open, setOpen] = useState(false);
-  const dDayUserInputList = useRecoilValue<UserInput[]>(dDayListState);
+  const dday = useRecoilValue<UserInput[]>(dDayListState);
   const isError = useRecoilValue<boolean>(isErrorState);
   const handleModal = () => setOpen((prev) => !prev);
 
@@ -30,10 +30,7 @@ const Main = () => {
           <div className="w-full grid grid-cols-2 p-2 my-2 gap-2">
             <Profile />
             <Container justifyContent="between">
-              <DDayBox
-                dDayName={dDayUserInputList[0].dday}
-                date={dDayUserInputList[0].date}
-              />
+              <DDayBox dDayName={dday[0].dday} date={dday[0].date} />
               <SetBtn onClick={handleModal} isHover />
             </Container>
           </div>

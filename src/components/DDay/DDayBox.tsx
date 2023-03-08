@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useCalcDays } from "../../hooks/useCalcDays";
 import Container from "../common/Container";
 import Text from "../common/Text";

@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { dDayListState, UserInput } from "../../recoil/dDay";
-import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
+import { AnimatePresence, Reorder } from "framer-motion";
 import Divider from "../common/Divider";
 import DDayInput from "./DDayInput";
 import DDayBox from "./DDayBox";
@@ -17,7 +17,6 @@ interface ISetDday {
  */
 const SetDday = ({ modalClose }: ISetDday) => {
   const [dDayList, setdDayList] = useRecoilState<UserInput[]>(dDayListState);
-  const dragControls = useDragControls();
 
   const deleteItem = (name: string | undefined) => {
     dDayList.length !== 1 &&
@@ -45,7 +44,6 @@ const SetDday = ({ modalClose }: ISetDday) => {
                   <Reorder.Item
                     key={value.dday}
                     value={value}
-                    dragControls={dragControls}
                     dragConstraints={{
                       top: -50,
                       bottom: 100,
