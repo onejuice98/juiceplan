@@ -23,7 +23,7 @@ const Template = ({ width, height }: ITemplate) => {
     useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D>();
   const templateImg = useRecoilState<string>(bgImage);
-  const [isDrawing, SetIsDrawing] = useState<boolean>(false);
+  const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const stroke = useRecoilValue<number>(strokeWidth);
   const color = useRecoilValue<string>(strokeColor);
 
@@ -71,9 +71,9 @@ const Template = ({ width, height }: ITemplate) => {
       width={width}
       height={height}
       onMouseMove={drawing}
-      onMouseDown={() => SetIsDrawing(true)}
-      onMouseUp={() => SetIsDrawing(false)}
-      onMouseLeave={() => SetIsDrawing(false)}
+      onMouseDown={() => setIsDrawing(true)}
+      onMouseUp={() => setIsDrawing(false)}
+      onMouseLeave={() => setIsDrawing(false)}
     />
   );
 };
