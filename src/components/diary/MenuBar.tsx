@@ -1,4 +1,4 @@
-import { RefObject, useRef } from "react";
+import React, { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { apply, bgImage, strokeColor, strokeWidth } from "../../recoil/diary";
 import BackSpace from "../common/BackSpace";
@@ -12,16 +12,14 @@ import Text from "../common/Text";
  */
 const MenuBar = () => {
   const setBgImages = useSetRecoilState<string>(bgImage);
+  const [pageApply, setPageApply] = useState<boolean>(false);
   const [isApply, setIsApply] = useRecoilState<boolean>(apply);
   const [stroke, setStroke] = useRecoilState<number>(strokeWidth);
   const [color, setColor] = useRecoilState<string>(strokeColor);
-  const imgRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
-  const readURL = () => {
-    if (!imgRef) return;
-    const file = imgRef.current?.files;
+
+  const readURL = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
-    if (!file) return;
-    reader.readAsDataURL(file[0]);
+    reader.readAsDataURL(event.currentTarget.files![0]);
     reader.onloadend = () => {
       if (typeof reader.result === "string") setBgImages(reader.result);
     };
@@ -35,7 +33,6 @@ const MenuBar = () => {
           className="p-1 block shadow-md w-full text-sm text-gray-700 border rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
           accept="image/png, image/jpeg"
           onChange={readURL}
-          ref={imgRef}
           type="file"
         />
         <Text gray className="sm:text-xs text-sm px-1">
@@ -73,7 +70,10 @@ const MenuBar = () => {
         hover
         bgColor="emerald"
         className="w-24 h-12"
-        onClick={() => setIsApply((prev) => !prev)}
+        onClick={() => {
+          setPageApply((prev) => !prev);
+          setIsApply(pageApply);
+        }}
       >
         {isApply ? "Reset" : "적용하기"}
       </Button>

@@ -30,9 +30,11 @@ const DayDiary = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <div className="flex flex-col w-[100vw] h-[100vh] bg-gray-100/[0.7]">
       <MenuBar />
+
       <div className="flex divide-x-[1px] w-full h-full">
         <div className="w-[50vw]" ref={divRef}>
           <Template width={templateWidth} height={templateHeight} />
