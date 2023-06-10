@@ -3,6 +3,7 @@ import Diary from "./pages/Diary";
 import DayDiary from "./pages/Diary/DayDiary";
 import DisplayDiary from "./pages/Diary/DisplayDiary";
 import Main from "./pages/Main";
+import Test from "./pages/Test";
 const App = () => {
   return (
     <Routes>
@@ -13,6 +14,7 @@ const App = () => {
         path="/juiceplan/diary/display/:dayId"
         element={<DisplayDiary />}
       />
+      <Route path="/juiceplan/test" element={<Test />} />
     </Routes>
   );
 };
